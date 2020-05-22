@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import "../Registration/registrationForm.css";
 
 const RegistrationForm = () => {
+  const [username, setusername] = useState("");
+  const [password, setpassword] = useState("");
   return (
     <React.Fragment>
       <div class="reg">
