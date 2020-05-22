@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Navbar, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 import "../Registration/registrationForm.css";
 
 const RegistrationForm = () => {
@@ -29,7 +29,7 @@ const RegistrationForm = () => {
           <Button variant="primary">Submit</Button>
         </Form>
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1420 240">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 230">
         <path
           fill="#0099ff"
           fill-opacity="1"
