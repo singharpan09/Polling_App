@@ -8,7 +8,7 @@ const RegistrationForm = () => {
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#">Polling App</Navbar.Brand>
 
-        <Button variant="outline-success">Login</Button>
+        <Button variant="outline-primary">Login</Button>
       </Navbar>
       <div class="reg">
         <h2>Signup</h2>
@@ -25,7 +25,7 @@ const RegistrationForm = () => {
           </Form.Group>
 
           <Form.Group controlId="formGridState">
-            <Form.Label>Select User Type</Form.Label>
+            <Form.Label>Select user type</Form.Label>
             <Form.Control as="select">
               <option>Admin</option>
               <option>Guest user</option>
@@ -34,7 +34,7 @@ const RegistrationForm = () => {
           <Button variant="primary">Submit</Button>
         </Form>
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 240">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1420 240">
         <path
           fill="#0099ff"
           fill-opacity="1"
