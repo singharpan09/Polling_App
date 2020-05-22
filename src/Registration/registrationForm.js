@@ -1,11 +1,22 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { Button, Form, Spinner } from "react-bootstrap";
 import "../Registration/registrationForm.css";
+import { RegistrationRequest } from "../Redux/actions/actions";
 
 const RegistrationForm = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [option, setoptions] = useState("Admin");
+  const [isLoading, setisLoading] = useState(false);
+  const dispatch = useDispatch();
+  console.log(username, password, option);
+  const handlesubmit = () => {
+    setisLoading(true);
+    dispatch(RegistrationRequest(true));
+    setusername("");
+    setpassword("");
+  };
   return (
     <React.Fragment>
       <div className="reg">
@@ -43,7 +54,16 @@ const RegistrationForm = () => {
               <option value="Guest">Guest User</option>
             </Form.Control>
           </Form.Group>
-          <Button variant="primary">Submit</Button>
+          <Button
+            variant="primary"
+            disabled="true"
+            onClick={() => handlesubmit()}
+          >
+            Submit
+          </Button>
+          {isLoading == true && (
+            <Spinner animation="border" variant="primary" />
+          )}
         </Form>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 230">

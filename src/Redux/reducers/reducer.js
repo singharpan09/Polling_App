@@ -1,9 +1,15 @@
-const initialstate = [];
+import * as actions from "../actionTypes/actionsTypes";
+const initialstate = {
+  isLoading: false,
+};
 
-const reducer = (state, action) => {
+const reducer = (state = initialstate, action) => {
   switch (action.type) {
-    case "":
-      return state;
+    case actions.REGISTRATION_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
 
     case "":
       return state;
