@@ -5,6 +5,7 @@ import "../Registration/registrationForm.css";
 const RegistrationForm = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
+  const [usertype, setusertype] = useState("Admin");
   return (
     <React.Fragment>
       <div class="reg">
@@ -14,18 +15,31 @@ const RegistrationForm = () => {
         <Form>
           <Form.Group>
             <Form.Label>Username</Form.Label>
-            <Form.Control type="text" placeholder="Enter your username" />
+            <Form.Control
+              type="text"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setusername(e.target.value)}
+            />
           </Form.Group>
           <Form.Group controlId="formGroupPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setpassword(e.target.value)}
+            />
           </Form.Group>
 
           <Form.Group controlId="formGridState">
             <Form.Label>Select user type</Form.Label>
-            <Form.Control as="select">
-              <option>Admin</option>
-              <option>Guest user</option>
+            <Form.Control
+              as="select"
+              onChange={(e) => setusertype(e.target.value)}
+            >
+              <option value="Admin">Admin</option>
+              <option value="Guest">Guest User</option>
             </Form.Control>
           </Form.Group>
           <Button variant="primary">Submit</Button>
