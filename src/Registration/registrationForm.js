@@ -5,11 +5,6 @@ import "../Registration/registrationForm.css";
 const RegistrationForm = () => {
   return (
     <React.Fragment>
-      <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#">Polling App</Navbar.Brand>
-
-        <Button variant="outline-primary">Login</Button>
-      </Navbar>
       <div class="reg">
         <h2>Signup</h2>
       </div>
