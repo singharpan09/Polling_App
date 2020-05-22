@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 
 const Login = () => {
+  const [username, setusername] = userState("");
+  const [password, setpassword] = useState("");
   return (
     <React.Fragment>
       <div className="reg">
@@ -11,11 +13,21 @@ const Login = () => {
         <Form>
           <Form.Group>
             <Form.Label>Username</Form.Label>
-            <Form.Control type="text" placeholder="Enter your username" />
+            <Form.Control
+              type="text"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setusername(e.target.value)}
+            />
           </Form.Group>
           <Form.Group controlId="formGroupPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" />
+            <Form.Control
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setpassword(e.target.value)}
+            />
           </Form.Group>
 
           <Button variant="primary">Submit</Button>
