@@ -20,6 +20,14 @@ const RegistrationForm = () => {
             <Form.Label>Password</Form.Label>
             <Form.Control type="password" placeholder="Password" />
           </Form.Group>
+
+          <Form.Group controlId="formGridState">
+            <Form.Label>Select User Type</Form.Label>
+            <Form.Control as="select">
+              <option>Admin</option>
+              <option>Guest user</option>
+            </Form.Control>
+          </Form.Group>
         </Form>
       </div>
     </React.Fragment>
