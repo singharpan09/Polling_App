@@ -11,9 +11,8 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Route exact path="/" component={RegistrationForm} />
-        {/* <RegistrationForm /> */}
+
         <Route path="/login" component={Login} />
-        {/* <Login /> */}
       </BrowserRouter>
     </React.Fragment>
   );
