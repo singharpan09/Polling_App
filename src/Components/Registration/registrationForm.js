@@ -1,22 +1,25 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Spinner } from "react-bootstrap";
-import "../Registration/registrationForm.css";
-import { RegistrationRequest } from "../Redux/actions/actions";
+import "./registrationForm.css";
+import { registationForm } from "../../Redux/actions/registrationaction";
 
-const RegistrationForm = () => {
+const Registration = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [option, setoptions] = useState("Admin");
-  const [isLoading, setisLoading] = useState(false);
+
   const dispatch = useDispatch();
-  console.log(username, password, option);
+  const state = useSelector((state) => {
+    return state;
+  });
+
   const handlesubmit = () => {
-    setisLoading(true);
-    dispatch(RegistrationRequest(true));
+    dispatch(registationForm(username, password, option));
     setusername("");
     setpassword("");
   };
+
   return (
     <React.Fragment>
       <div className="reg">
@@ -56,14 +59,19 @@ const RegistrationForm = () => {
           </Form.Group>
           <Button
             variant="primary"
-            disabled="true"
+            disabled={(username.length && password.length) === 0}
             onClick={() => handlesubmit()}
           >
-            Submit
+            {state.isLoading === true ? (
+              <Spinner
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            ) : null}
+            {state.isLoading === true ? null : <span>Submit</span>}
           </Button>
-          {isLoading == true && (
-            <Spinner animation="border" variant="primary" />
-          )}
         </Form>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 230">
@@ -77,4 +85,4 @@ const RegistrationForm = () => {
   );
 };
 
-export default RegistrationForm;
+export default Registration;

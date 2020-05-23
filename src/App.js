@@ -1,16 +1,18 @@
 import React from "react";
-import RegistrationForm from "./Registration/registrationForm";
-import Login from "../src/Login/Login";
+import Registration from "./Components/Registration/registrationForm";
+import Login from "./Components/Login/Login";
 import NavBar from "./navbar";
 import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
+import API from "./api";
 
 function App() {
   return (
     <React.Fragment>
       <BrowserRouter>
         <NavBar />
-        <Route exact path="/" component={RegistrationForm} />
+        <API />
+        <Route exact path="/" component={Registration} />
 
         <Route path="/login" component={Login} />
       </BrowserRouter>

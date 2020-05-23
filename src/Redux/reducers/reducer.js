@@ -1,22 +1,36 @@
 import * as actions from "../actionTypes/actionsTypes";
 const initialstate = {
   isLoading: false,
+  isRegistered: false,
 };
 
-const reducer = (state = initialstate, action) => {
+const Registrationreducer = (state = initialstate, action) => {
   switch (action.type) {
-    case actions.REGISTRATION_REQUEST:
+    case actions.Registation_Request:
       return {
         ...state,
         isLoading: true,
       };
 
-    case "":
-      return state;
+    case actions.Registation_Success:
+      return {
+        ...state,
+        isRegistered: true,
+        isLoading: false,
+        response: action.payload.response,
+      };
+
+    case actions.Registation_Error:
+      return {
+        ...state,
+        isRegistered: false,
+        isLoading: false,
+        error: action.payload.error,
+      };
 
     default:
       return state;
   }
 };
 
-export default reducer;
+export default Registrationreducer;
