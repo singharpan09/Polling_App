@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Spinner } from "react-bootstrap";
 import "./registrationForm.css";
 import { registationForm } from "../../Redux/actions/registrationaction";
+import { useHistory } from "react-router-dom";
 
 const Registration = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [option, setoptions] = useState("Admin");
+  const history = useHistory();
 
   const dispatch = useDispatch();
   const state = useSelector((state) => {
@@ -18,13 +20,19 @@ const Registration = () => {
     dispatch(registationForm(username, password, option));
     setusername("");
     setpassword("");
+    if (state.isLoading === false && state.isRegistered === false) {
+      console.log(state.error);
+    }
   };
-
+  if (state.isRegistered) {
+    history.push("./login");
+  }
   return (
     <React.Fragment>
       <div className="reg">
         <h2>Signup</h2>
       </div>
+
       <div className="regis">
         <Form>
           <Form.Group>
