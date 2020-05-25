@@ -1,7 +1,7 @@
 import * as actions from "../actionTypes/actionsTypes";
 const initialstate = {
   isLoading: false,
-  isRegistered: false,
+  isLogin: false,
 };
 
 const Loginreducer = (state = initialstate, action) => {
@@ -10,14 +10,15 @@ const Loginreducer = (state = initialstate, action) => {
       return {
         ...state,
         isLoading: true,
-        isRegistered: false,
+        isLogin: false,
       };
 
     case actions.Login_Sucess:
       return {
         ...state,
+        isLogin: true,
         isLoading: false,
-        isRegistered: true,
+
         response: action.payload.response,
       };
 
@@ -25,7 +26,7 @@ const Loginreducer = (state = initialstate, action) => {
       return {
         ...state,
         isLoading: false,
-        isRegistered: false,
+        isLogin: false,
         error: action.payload.error,
       };
     default:
