@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { LoginRequest } from "../../Redux/createAction/createAction";
 
 const Login = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
+
+  const handleSubmit = () => {
+    let loginData = {
+      username: username,
+      password: password,
+    };
+  };
   return (
     <React.Fragment>
       <div className="reg">
@@ -30,7 +38,14 @@ const Login = () => {
             />
           </Form.Group>
 
-          <Button variant="primary">Submit</Button>
+          <Button
+            onClick={() => {
+              handleSubmit();
+            }}
+            variant="primary"
+          >
+            Submit
+          </Button>
         </Form>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 300">
