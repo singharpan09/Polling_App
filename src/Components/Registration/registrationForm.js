@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Spinner } from "react-bootstrap";
 import "./registrationForm.css";
-import { registationForm } from "../../Redux/actions/registrationaction";
+//import { registationForm } from "../../Redux/actions/registrationaction";
+import { RegistationRequest } from "../../Redux/createAction/createAction";
 import { useHistory } from "react-router-dom";
 
 const Registration = () => {
@@ -16,12 +17,23 @@ const Registration = () => {
     return state;
   });
 
+  // let formData = {
+  //   email: this.state.email,
+  //   password: this.state.password,
+  //   remember_me: true
+  // }
+  // this.props.loginRequest(formData)
+
   const handlesubmit = () => {
-    dispatch(registationForm(username, password, option));
+    let formData = {
+      username: username,
+      password: password,
+      option: option,
+    };
+    dispatch(RegistationRequest(formData));
     setusername("");
     setpassword("");
     if (state.isLoading === false && state.isRegistered === false) {
-      console.log(state.error);
     }
   };
   if (state.isRegistered) {
