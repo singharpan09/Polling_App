@@ -6,7 +6,9 @@ const NavBar = () => {
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="#">Polling App</Navbar.Brand>
+        <Link to="/login">
+          <Navbar.Brand>Polling App</Navbar.Brand>
+        </Link>
 
         <Link to="/login">
           <Button variant="outline-primary">Login</Button>

@@ -13,6 +13,8 @@ const Login = () => {
       password: password,
     };
     dispatchEvent(LoginRequest(loginData));
+    setusername("");
+    setpassword("");
   };
   return (
     <React.Fragment>
