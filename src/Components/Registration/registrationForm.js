@@ -17,6 +17,7 @@ const Registration = () => {
     return state;
   });
 
+  const regisstatus = state.Regis_status;
   const handlesubmit = () => {
     let formData = {
       username: username,
@@ -26,10 +27,10 @@ const Registration = () => {
     dispatch(RegistationRequest(formData));
     setusername("");
     setpassword("");
-    if (state.isLoading === false && state.isRegistered === false) {
+    if (regisstatus.isLoading === false && regisstatus.isRegistered === false) {
     }
   };
-  if (state.isRegistered) {
+  if (regisstatus.isRegistered) {
     history.push("./login");
   }
   return (
@@ -75,7 +76,7 @@ const Registration = () => {
             disabled={(username.length && password.length) === 0}
             onClick={() => handlesubmit()}
           >
-            {state.isLoading === true ? (
+            {regisstatus.isLoading === true ? (
               <Spinner
                 animation="border"
                 size="sm"
@@ -83,10 +84,10 @@ const Registration = () => {
                 aria-hidden="true"
               />
             ) : null}
-            {state.isLoading === true ? null : <span>Submit</span>}
+            {regisstatus.isLoading === true ? null : <span>Submit</span>}
           </Button>
         </Form>
-        {state.state}
+        {regisstatus.state}
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 230">
         <path
