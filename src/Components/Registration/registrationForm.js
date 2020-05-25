@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Spinner } from "react-bootstrap";
 import "./registrationForm.css";
-//import { registationForm } from "../../Redux/actions/registrationaction";
+
 import { RegistationRequest } from "../../Redux/createAction/createAction";
 import { useHistory } from "react-router-dom";
 
@@ -16,13 +16,6 @@ const Registration = () => {
   const state = useSelector((state) => {
     return state;
   });
-
-  // let formData = {
-  //   email: this.state.email,
-  //   password: this.state.password,
-  //   remember_me: true
-  // }
-  // this.props.loginRequest(formData)
 
   const handlesubmit = () => {
     let formData = {

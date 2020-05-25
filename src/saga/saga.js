@@ -2,7 +2,6 @@ import { takeLatest, put, call } from "redux-saga/effects";
 import * as actions from "../Redux/actionTypes/actionsTypes";
 
 import {
-  RegistationRequest,
   RegistationSuccess,
   RegistationError,
 } from "../Redux/createAction/createAction";
