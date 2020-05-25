@@ -5,7 +5,7 @@ const initialstate = {
 };
 
 const Loginreducer = (state = initialstate, action) => {
-  switch (actions.type) {
+  switch (action.type) {
     case actions.Login_Request:
       return {
         ...state,
