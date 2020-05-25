@@ -86,6 +86,7 @@ const Registration = () => {
             {state.isLoading === true ? null : <span>Submit</span>}
           </Button>
         </Form>
+        {state.state}
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 230">
         <path
