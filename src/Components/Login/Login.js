@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {} from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { LoginRequest } from "../../Redux/createAction/createAction";
 
@@ -11,6 +12,7 @@ const Login = () => {
       username: username,
       password: password,
     };
+    dispatchEvent(LoginRequest(loginData));
   };
   return (
     <React.Fragment>

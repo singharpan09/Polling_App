@@ -86,10 +86,14 @@ const Registration = () => {
             ) : null}
             {regisstatus.isLoading === true ? null : <span>Submit</span>}
           </Button>
+          <div>
+            {regisstatus.error && regisstatus.error.error ? (
+              <h6 style={{ color: "Red" }}>{regisstatus.error.message}</h6>
+            ) : null}
+          </div>
         </Form>
-        {regisstatus.state}
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 230">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 220">
         <path
           fill="#0099ff"
           fillOpacity="1"
