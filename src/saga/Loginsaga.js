@@ -6,3 +6,7 @@ import {
   LoginError,
 } from "../Redux/createAction/createAction";
 import * as actions from "../Redux/actionTypes/actionsTypes";
+
+export function* loginRequest() {
+  yield takeLatest(actions.Login_Request, loginSaga);
+}

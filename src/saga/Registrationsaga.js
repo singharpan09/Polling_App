@@ -7,7 +7,7 @@ import {
 } from "../Redux/createAction/createAction";
 import axios from "axios";
 
-function* sagaregisRequest(action) {
+function* registrationSaga(action) {
   try {
     let username = action.payload.username;
     let password = action.payload.password;
@@ -33,5 +33,5 @@ function* sagaregisRequest(action) {
 }
 
 export function* registrationRequest() {
-  yield takeLatest(actions.Registation_Request, sagaregisRequest);
+  yield takeLatest(actions.Registation_Request, registrationSaga);
 }
