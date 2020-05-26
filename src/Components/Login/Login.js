@@ -1,18 +1,18 @@
 import React, { useState } from "react";
-import {} from "react-redux";
+import { useDispatch } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { LoginRequest } from "../../Redux/createAction/createAction";
 
 const Login = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
-
+  const dispatch = useDispatch();
   const handleSubmit = () => {
     let loginData = {
       username: username,
       password: password,
     };
-    dispatchEvent(LoginRequest(loginData));
+    dispatch(LoginRequest(loginData));
     setusername("");
     setpassword("");
   };

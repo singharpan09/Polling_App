@@ -27,8 +27,6 @@ const Registration = () => {
     dispatch(RegistationRequest(formData));
     setusername("");
     setpassword("");
-    if (regisstatus.isLoading === false && regisstatus.isRegistered === false) {
-    }
   };
   if (regisstatus.isRegistered) {
     history.push("./login");
