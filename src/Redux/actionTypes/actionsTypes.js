@@ -9,3 +9,7 @@ export const Login_Error = "Login_Error";
 export const Add_PollRequest = "Add_PollRequest";
 export const Add_PollSuccess = "Add_PollSuccess";
 export const Add_PollError = "Add_PollError";
+
+export const Add_NewPollRequest = "Add_NewPollRequest";
+export const Add_NewPollSuccess = "Add_NewPollSuccess";
+export const Add_NewPollError = "Add_NewPollError";
