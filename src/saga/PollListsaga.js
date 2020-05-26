@@ -11,7 +11,7 @@ export function* Listsaga(action) {
       axios.get,
       "https://secure-refuge-14993.herokuapp.com/list_polls"
     );
-    console.log(response);
+
     if (response) {
       yield put(AddPollSuccess({ response: response.data }));
     } else {

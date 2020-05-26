@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
 import { AddPollRequest } from "../../Redux/createAction/createAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -9,7 +9,10 @@ const Dashboard = () => {
     dispatch(AddPollRequest());
     console.log("add poll called");
   }, []);
-
+  const state = useSelector((state) => {
+    return state;
+  });
+  console.log(state);
   return (
     <React.Fragment>
       <center>
