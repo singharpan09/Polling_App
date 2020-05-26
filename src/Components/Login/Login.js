@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { LoginRequest } from "../../Redux/createAction/createAction";
+import "./Login.css";
 
 const Login = () => {
   const [username, setusername] = useState("");
@@ -18,10 +19,10 @@ const Login = () => {
   };
   return (
     <React.Fragment>
-      <div className="reg">
+      <div className="Login">
         <h2>Login</h2>
       </div>
-      <div className="regis">
+      <div className="Login">
         <Form>
           <Form.Group>
             <Form.Label>Username</Form.Label>
