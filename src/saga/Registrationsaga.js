@@ -12,7 +12,7 @@ function* sagaregisRequest(action) {
     let username = action.payload.username;
     let password = action.payload.password;
     let option = action.payload.option;
-    console.log(username, password, option);
+
     // yield put(RegistationRequest);
     const response = yield call(
       axios.get,
