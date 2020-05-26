@@ -28,8 +28,10 @@ const PollListreducer = (state = initialState, action) => {
         isPollfetched: false,
         isError: true,
         isLoading: false,
-        response: actions.payload.response,
+        response: action.payload.response,
       };
+    default:
+      return state;
   }
 };
 

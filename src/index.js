@@ -9,6 +9,7 @@ import createSagaMiddleware from "redux-saga";
 
 // import watchAllSaga from "./saga/combineSaga";
 import { loginRequest } from "./saga/Loginsaga";
+import PollListsaga from "./saga/PollListsaga";
 import rootReducer from "../src/Redux/reducers/combinereducer";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -20,7 +21,7 @@ const store = createStore(
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
-sagaMiddleware.run(loginRequest);
+sagaMiddleware.run(PollListsaga);
 
 ReactDOM.render(
   <React.StrictMode>
