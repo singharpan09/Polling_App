@@ -1,16 +1,29 @@
 import * as actions from "../Redux/actionTypes/actionsTypes";
-import { call, put } from "redux-saga/effects";
+import { takeLatest, call, put } from "redux-saga/effects";
 import axios from "axios";
-function* Listsaga() {
-  const response = yield call(
-    axios.get,
-    `https://secure-refuge-14993.herokuapp.com/list_polls`
-  );
-  console.log(response);
+import {
+  AddPollSuccess,
+  AddPollError,
+} from "../Redux/createAction/createAction";
+export function* Listsaga(action) {
+  try {
+    let response = yield call(
+      axios.get,
+      "https://secure-refuge-14993.herokuapp.com/list_polls"
+    );
+    console.log(response);
+    if (response) {
+      yield put(AddPollSuccess({ response: response.data }));
+    } else {
+      yield put(AddPollError({ error: response.error }));
+    }
+  } catch (error) {
+    yield put(AddPollError({ error: error }));
+  }
 }
 
 export function* PollListsaga() {
-  yield (actions.Add_PollRequest, Listsaga);
+  yield takeLatest(actions.Add_PollRequest, Listsaga);
 }
 
 export default PollListsaga;

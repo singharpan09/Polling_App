@@ -8,7 +8,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 
 // import watchAllSaga from "./saga/combineSaga";
-import { loginRequest } from "./saga/Loginsaga";
+//import { loginRequest } from "./saga/Loginsaga";
 import PollListsaga from "./saga/PollListsaga";
 import rootReducer from "../src/Redux/reducers/combinereducer";
 

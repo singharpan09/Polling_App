@@ -8,14 +8,13 @@ export function* loginSaga(action) {
   try {
     let username = action.payload.username;
     let password = action.payload.password;
-    console.log(username);
-    console.log(password);
+
     let response = yield call(
       axios.get,
       `https://secure-refuge-14993.herokuapp.com/login?username=${username}&password=${password}`
     );
     let data = response.data;
-    console.log(data);
+
     if (data.error === 0) {
       localStorage.setItem("token", data.token);
       yield put(LoginSuccess({ response: data }));

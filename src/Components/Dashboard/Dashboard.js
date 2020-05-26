@@ -7,6 +7,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(AddPollRequest());
+    console.log("add poll called");
   }, []);
 
   return (
