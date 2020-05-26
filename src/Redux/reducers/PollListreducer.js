@@ -2,6 +2,7 @@ import * as actions from "../actionTypes/actionsTypes";
 const initialState = {
   isPollfetched: false,
   isLoading: false,
+  isError: false,
   poll: [],
 };
 
@@ -25,6 +26,7 @@ const PollListreducer = (state = initialState, action) => {
       return {
         ...state,
         isPollfetched: false,
+        isError: true,
         isLoading: false,
         response: actions.payload.response,
       };
