@@ -6,7 +6,7 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
-import { regisRequest } from "./saga/Registrationsaga";
+import { registrationRequest } from "./saga/Registrationsaga";
 import rootReducer from "../src/Redux/reducers/combinereducer";
 
 const sagaMiddleware = createSagaMiddleware();
@@ -18,7 +18,7 @@ const store = createStore(
   composeEnhancers(applyMiddleware(sagaMiddleware))
 );
 
-sagaMiddleware.run(regisRequest);
+sagaMiddleware.run(registrationRequest);
 
 ReactDOM.render(
   <React.StrictMode>

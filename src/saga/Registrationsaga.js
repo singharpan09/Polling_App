@@ -32,6 +32,6 @@ function* sagaregisRequest(action) {
   }
 }
 
-export function* regisRequest() {
+export function* registrationRequest() {
   yield takeLatest(actions.Registation_Request, sagaregisRequest);
 }
