@@ -33,11 +33,11 @@ const Registration = () => {
   }
   return (
     <React.Fragment>
-      <div className="reg">
+      <div className="Registration">
         <h2>Signup</h2>
       </div>
 
-      <div className="regis">
+      <div className="Registration">
         <Form>
           <Form.Group>
             <Form.Label>Username</Form.Label>
