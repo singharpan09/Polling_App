@@ -13,7 +13,7 @@ export function* Listsaga(action) {
     );
 
     if (response) {
-      yield put(AddPollSuccess({ response: response.data }));
+      yield put(AddPollSuccess({ response: response.data.data }));
     } else {
       yield put(AddPollError({ error: response.error }));
     }
