@@ -17,7 +17,7 @@ const Registration = () => {
     return state;
   });
 
-  const regisstatus = state.Regis_status;
+  const regisstatus = state.Registrationstatus;
   const handlesubmit = () => {
     let formData = {
       username: username,
