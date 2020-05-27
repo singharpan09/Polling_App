@@ -22,8 +22,13 @@ const CreatePoll = () => {
   };
 
   const handlePollSubmit = () => {
-    dispatch(CreateNewPollRequest(title, options));
-    history.push("./dashboard");
+    let poll = {
+      title: title,
+      options: options,
+    };
+    dispatch(CreateNewPollRequest(poll));
+    console.log(title, options);
+    // history.push("./dashboard");
   };
   console.log(options);
   return (
@@ -66,7 +71,7 @@ const CreatePoll = () => {
         ) : null}
         <span className="pollsubmit">
           {options.length ? (
-            <Button onClcik={handlePollSubmit} variant="success">
+            <Button onClick={handlePollSubmit} variant="success">
               Submit Poll
             </Button>
           ) : null}
