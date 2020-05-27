@@ -1,6 +1,10 @@
 import * as actions from "../Redux/actionTypes/actionsTypes";
-import { takeLatest, call } from "redux-saga/effects";
+import { takeLatest, call, put } from "redux-saga/effects";
 import axios from "axios";
+import {
+  CreateNewPollSuccess,
+  CreateNewPollError,
+} from "../Redux/createAction/createAction";
 export function* CreateNewPollSaga(action) {
   console.log(action);
   let option = action.payload.options;
@@ -18,9 +22,15 @@ export function* CreateNewPollSaga(action) {
   });
 
   let response = yield call(
+    axios.get,
     `https://secure-refuge-14993.herokuapp.com/add_poll?title=${title}&options=${optionString}`
   );
-  console.log(response);
+  let data = response.data;
+  if (data.error === 0) {
+    yield put(CreateNewPollSuccess({ response: data.data }));
+  } else {
+    yield put(CreateNewPollError({ error: data.error }));
+  }
 }
 
 export function* CreatePollRequest() {
