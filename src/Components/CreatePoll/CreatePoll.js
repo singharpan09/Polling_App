@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 const CreatePoll = () => {
   const [title, settitle] = useState("");
   const [options, setoptions] = useState([]);
+  const dispatch = useDispatch();
 
   const handleAddOption = () => {
     setoptions((prevState) => [...prevState, ""]);
@@ -16,6 +17,10 @@ const CreatePoll = () => {
     const data = [...options];
     data[index] = e.target.value;
     setoptions(data);
+  };
+
+  const handlePollSubmit = () => {
+    dispatch(CreateNewPollRequest(title, options));
   };
   console.log(options);
   return (
@@ -58,7 +63,9 @@ const CreatePoll = () => {
         ) : null}
         <span className="pollsubmit">
           {options.length ? (
-            <Button variant="success">Submit Poll</Button>
+            <Button onClcik={handlePollSubmit} variant="success">
+              Submit Poll
+            </Button>
           ) : null}
         </span>
       </div>
