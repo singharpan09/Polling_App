@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./CreatePoll.css";
+import { CreateNewPollRequest } from "../../Redux/createAction/createAction";
 
 const CreatePoll = () => {
   const [title, settitle] = useState("");
