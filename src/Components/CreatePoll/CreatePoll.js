@@ -3,11 +3,13 @@ import { Form, Button } from "react-bootstrap";
 import "./CreatePoll.css";
 import { CreateNewPollRequest } from "../../Redux/createAction/createAction";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const CreatePoll = () => {
   const [title, settitle] = useState("");
   const [options, setoptions] = useState([]);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const handleAddOption = () => {
     setoptions((prevState) => [...prevState, ""]);
@@ -21,6 +23,7 @@ const CreatePoll = () => {
 
   const handlePollSubmit = () => {
     dispatch(CreateNewPollRequest(title, options));
+    history.push("./dashboard");
   };
   console.log(options);
   return (
