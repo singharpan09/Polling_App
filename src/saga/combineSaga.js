@@ -1,12 +1,17 @@
-import registrationSaga from "./Registrationsaga";
-import loginSaga from "./Loginsaga";
+import { registrationRequest } from "./Registrationsaga";
+import { loginRequest } from "./Loginsaga";
+import { PollListRequest } from "./PollListsaga";
+import { CreatePollRequest } from "./CreatePollsaga";
 
-import { takeLatest } from "redux-saga/effects";
-import * as actions from "../Redux/actionTypes/actionsTypes";
+import { fork, all } from "redux-saga/effects";
 function* watchAllSaga() {
   {
-    yield takeLatest(actions.Registation_Request, loginSaga);
-    yield takeLatest(actions.Login_Request, registrationSaga);
+    yield all([
+      fork(registrationRequest),
+      fork(loginRequest),
+      fork(PollListRequest),
+      fork(CreatePollRequest),
+    ]);
   }
 }
 

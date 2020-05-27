@@ -22,8 +22,6 @@ export function* Listsaga(action) {
   }
 }
 
-export function* PollListsaga() {
+export function* PollListRequest() {
   yield takeLatest(actions.Add_PollRequest, Listsaga);
 }
-
-export default PollListsaga;

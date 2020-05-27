@@ -35,5 +35,3 @@ export function* CreateNewPollSaga(action) {
 export function* CreatePollRequest() {
   yield takeLatest(actions.Create_NewPollRequest, CreateNewPollSaga);
 }
-
-export default CreatePollRequest;

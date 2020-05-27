@@ -31,3 +31,7 @@ export default function* registrationSaga(action) {
     yield put(RegistationError({ registation: false, error: error }));
   }
 }
+
+export function* registrationRequest() {
+  yield takeLatest(actions.Registation_Request, registrationSaga);
+}
