@@ -9,7 +9,6 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(AddPollRequest());
-    console.log("add poll called");
   }, []);
   const pollList = useSelector((state) => {
     return state.PollListstatus.poll;
