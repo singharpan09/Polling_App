@@ -28,9 +28,9 @@ const Registration = () => {
     setusername("");
     setpassword("");
   };
-  if (regisstatus.isRegistered) {
-    history.push("./login");
-  }
+  // if (regisstatus.isRegistered) {
+  //   history.push("./login");
+  // }
   return (
     <React.Fragment>
       <div className="Registration">
