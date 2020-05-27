@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Card } from "react-bootstrap";
+import "./Dashboard.css";
 
 import { AddPollRequest } from "../../Redux/createAction/createAction";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,9 +17,11 @@ const Dashboard = () => {
   console.log(pollList);
   return (
     <React.Fragment>
-      <center>
-        <h3 style={{ color: "#0099ff" }}>Welcome to Poll</h3>
-      </center>
+      <div className="title">
+        <center>
+          <h3>Welcome to Poll</h3>
+        </center>
+      </div>
 
       {pollList.map((item) => (
         <Card key={item._id}>
