@@ -27,7 +27,7 @@ const CreatePoll = () => {
       options: options,
     };
     dispatch(CreateNewPollRequest(poll));
-    console.log(title, options);
+
     // history.push("./dashboard");
   };
   console.log(options);
