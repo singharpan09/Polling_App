@@ -4,16 +4,17 @@ import "./CreatePoll.css";
 
 const CreatePoll = () => {
   const [title, settitle] = useState("");
-  const [options, setoptions] = useState(["as", "Aad", "ada"]);
+  const [options, setoptions] = useState([]);
   console.log(options);
 
   const handleAddOption = () => {
     setoptions((prevState) => [...prevState, ""]);
   };
   const handleonChangeAddOption = (e, index) => {
-    const data = options;
+    e.preventDefault();
+    const data = [...options];
     data[index] = e.target.value;
-    setoptions((prevState) => [...prevState, data]);
+    setoptions(data);
   };
   return (
     <React.Fragment>
@@ -34,23 +35,25 @@ const CreatePoll = () => {
           onChange={(e) => settitle(e.target.value)}
         />
       </div>
+      <br />
       {options.map((option, index) => (
         <div className="options">
-          <Form.Label>Option</Form.Label>
+          <Form.Label>Option:{index + 1}</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Option here"
-            value={option}
+            value={options[index]}
             onChange={(e) => handleonChangeAddOption(e, index)}
           />
         </div>
       ))}
-
-      {title ? (
-        <Button onClick={handleAddOption} variant="primary">
-          Add Option
-        </Button>
-      ) : null}
+      <div className="Addbutton">
+        {title ? (
+          <Button onClick={handleAddOption} variant="primary">
+            Add Option
+          </Button>
+        ) : null}
+      </div>
     </React.Fragment>
   );
 };
