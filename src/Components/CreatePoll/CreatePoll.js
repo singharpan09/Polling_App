@@ -5,7 +5,6 @@ import "./CreatePoll.css";
 const CreatePoll = () => {
   const [title, settitle] = useState("");
   const [options, setoptions] = useState([]);
-  console.log(options);
 
   const handleAddOption = () => {
     setoptions((prevState) => [...prevState, ""]);
@@ -16,6 +15,7 @@ const CreatePoll = () => {
     data[index] = e.target.value;
     setoptions(data);
   };
+  console.log(options);
   return (
     <React.Fragment>
       <div className="poll">
@@ -37,13 +37,14 @@ const CreatePoll = () => {
       </div>
       <br />
       {options.map((option, index) => (
-        <div className="options">
+        <div className="options" key={index}>
           <Form.Label>Option:{index + 1}</Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Option here"
             value={options[index]}
             onChange={(e) => handleonChangeAddOption(e, index)}
+            required
           />
         </div>
       ))}
@@ -53,6 +54,11 @@ const CreatePoll = () => {
             Add Option
           </Button>
         ) : null}
+        <span className="pollsubmit">
+          {options.length ? (
+            <Button variant="success">Submit Poll</Button>
+          ) : null}
+        </span>
       </div>
     </React.Fragment>
   );

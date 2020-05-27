@@ -12,4 +12,8 @@
 .Addbutton {
   width: 40%;
   margin: 0 auto;
+  margin-top: 1%;
+}
+.pollsubmit {
+  margin: 2%;
 }
