@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import "./CreatePoll.css";
 import { CreateNewPollRequest } from "../../Redux/createAction/createAction";
+import { useDispatch } from "react-redux";
 
 const CreatePoll = () => {
   const [title, settitle] = useState("");
