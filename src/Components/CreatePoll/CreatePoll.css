@@ -9,6 +9,10 @@
   width: 40%;
   margin: 0 auto;
 }
+.optionwithbutton {
+  display: flex;
+}
+
 .Addbutton {
   width: 40%;
   margin: 0 auto;
@@ -16,4 +20,7 @@
 }
 .pollsubmit {
   margin: 2%;
+}
+.removebutton {
+  margin-left: 2%;
 }

@@ -52,16 +52,22 @@ const CreatePoll = () => {
       </div>
       <br />
       {options.map((option, index) => (
-        <div className="options" key={index}>
-          <Form.Label>Option:{index + 1}</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="Enter Option here"
-            value={options[index]}
-            onChange={(e) => handleonChangeAddOption(e, index)}
-            required
-          />
-        </div>
+        <React.Fragment>
+          <div className="options" key={index}>
+            <Form.Label>Option:{index + 1}</Form.Label>
+            <div className="optionwithbutton">
+              <Form.Control
+                type="text"
+                placeholder="Enter Option here"
+                value={options[index]}
+                onChange={(e) => handleonChangeAddOption(e, index)}
+              />
+              <span class="removebutton">
+                <Button variant="danger">Remove</Button>
+              </span>
+            </div>
+          </div>
+        </React.Fragment>
       ))}
       <div className="Addbutton">
         {title ? (
