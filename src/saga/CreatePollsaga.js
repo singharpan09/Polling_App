@@ -6,7 +6,6 @@ import {
   CreateNewPollError,
 } from "../Redux/createAction/createAction";
 export function* CreateNewPollSaga(action) {
-  console.log(action);
   let option = action.payload.options;
   let title = action.payload.title;
   option.splice(-1, 1);

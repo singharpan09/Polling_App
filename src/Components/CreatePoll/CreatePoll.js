@@ -31,6 +31,11 @@ const CreatePoll = () => {
     // history.push("./dashboard");
   };
   console.log(options);
+  const handleRemoveOption = (index) => {
+    const data = [...options];
+    data.splice(index, 1);
+    setoptions(data);
+  };
   return (
     <React.Fragment>
       <div className="poll">
@@ -52,8 +57,8 @@ const CreatePoll = () => {
       </div>
       <br />
       {options.map((option, index) => (
-        <React.Fragment>
-          <div className="options" key={index}>
+        <React.Fragment key={index}>
+          <div className="options">
             <Form.Label>Option:{index + 1}</Form.Label>
             <div className="optionwithbutton">
               <Form.Control
@@ -62,8 +67,15 @@ const CreatePoll = () => {
                 value={options[index]}
                 onChange={(e) => handleonChangeAddOption(e, index)}
               />
-              <span class="removebutton">
-                <Button variant="danger">Remove</Button>
+              <span className="removebutton">
+                <Button
+                  onClick={() => {
+                    handleRemoveOption(index);
+                  }}
+                  variant="danger"
+                >
+                  Remove
+                </Button>
               </span>
             </div>
           </div>
