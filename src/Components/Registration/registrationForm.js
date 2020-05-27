@@ -71,7 +71,7 @@ const Registration = () => {
           </Form.Group>
           <Button
             variant="primary"
-            disabled={(username.length && password.length) === 0}
+            disabled={username && password ? false : true}
             onClick={() => handlesubmit()}
           >
             {regisstatus.isLoading === true ? (
