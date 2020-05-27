@@ -4,8 +4,17 @@ import "./CreatePoll.css";
 
 const CreatePoll = () => {
   const [title, settitle] = useState("");
-  const [options, setoptions] = useState([]);
-  console.log(title);
+  const [options, setoptions] = useState(["as", "Aad", "ada"]);
+  console.log(options);
+
+  const handleAddOption = () => {
+    setoptions((prevState) => [...prevState, ""]);
+  };
+  const handleonChangeAddOption = (e, index) => {
+    const data = options;
+    data[index] = e.target.value;
+    setoptions((prevState) => [...prevState, data]);
+  };
   return (
     <React.Fragment>
       <div className="poll">
@@ -25,11 +34,23 @@ const CreatePoll = () => {
           onChange={(e) => settitle(e.target.value)}
         />
       </div>
-      {/* <div className="options">
-        <Form.Label>Option</Form.Label>
-        <Form.Control type="text" placeholder="Enter option here" />
-      </div> */}
-      {title ? <Button variant="primary">Add Option</Button> : null}
+      {options.map((option, index) => (
+        <div className="options">
+          <Form.Label>Option</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter Option here"
+            value={option}
+            onChange={(e) => handleonChangeAddOption(e, index)}
+          />
+        </div>
+      ))}
+
+      {title ? (
+        <Button onClick={handleAddOption} variant="primary">
+          Add Option
+        </Button>
+      ) : null}
     </React.Fragment>
   );
 };
