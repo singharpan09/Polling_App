@@ -28,7 +28,7 @@ const CreatePoll = () => {
     };
     dispatch(CreateNewPollRequest(poll));
 
-    // history.push("./dashboard");
+    history.push("./dashboard");
   };
   console.log(options);
   const handleRemoveOption = (index) => {

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Card } from "react-bootstrap";
+import { Card, Spinner } from "react-bootstrap";
 import "./Dashboard.css";
 
 import { AddPollRequest } from "../../Redux/createAction/createAction";
@@ -13,7 +13,10 @@ const Dashboard = () => {
   const pollList = useSelector((state) => {
     return state.PollListstatus.poll;
   });
-  console.log(pollList);
+  const pollstatus = useSelector((state) => {
+    return state.PollListstatus.isPollfetched;
+  });
+  console.log(pollstatus);
   return (
     <React.Fragment>
       <div className="title">
@@ -21,16 +24,20 @@ const Dashboard = () => {
           <h3>Welcome to Poll</h3>
         </center>
       </div>
-
+      {pollstatus === false ? (
+        <Spinner className="spinner" animation="border" variant="primary" />
+      ) : null}
       {pollList.map((item) => (
-        <Card key={item._id}>
-          <Card.Title>Title :{item.title}</Card.Title>
-          {item.options.map((option) => (
-            <div>
-              <input type="radio" />
-              <label>{option.option}</label>
-            </div>
-          ))}
+        <Card className="Card" key={item._id}>
+          <div className="Card1">
+            <Card.Title>Title :{item.title}</Card.Title>
+            {item.options.map((option) => (
+              <div>
+                <input type="radio" />
+                <label>{option.option}</label>
+              </div>
+            ))}
+          </div>
         </Card>
       ))}
     </React.Fragment>

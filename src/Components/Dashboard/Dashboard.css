@@ -1,3 +1,19 @@
 .title {
   color: #0099ff;
 }
+.Card {
+  width: 90%;
+  margin: 2% auto;
+  box-shadow: 0 4px 6px 0 #0099ff;
+}
+.Card1 {
+  margin-left: 1%;
+}
+input {
+  margin-right: 1%;
+}
+.spinner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}

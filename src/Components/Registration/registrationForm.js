@@ -18,6 +18,7 @@ const Registration = () => {
   });
 
   const regisstatus = state.Registrationstatus;
+
   const handlesubmit = () => {
     let formData = {
       username: username,
@@ -84,14 +85,19 @@ const Registration = () => {
             ) : null}
             {regisstatus.isLoading === true ? null : <span>Submit</span>}
           </Button>
-          <div>
+          <div className="message">
             {regisstatus.error && regisstatus.error.error ? (
               <h6 style={{ color: "Red" }}>{regisstatus.error.message}</h6>
+            ) : null}
+            {regisstatus.isRegistered ? (
+              <h6 style={{ color: "green" }}>
+                You have Successfully Registered
+              </h6>
             ) : null}
           </div>
         </Form>
       </div>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 220">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 220">
         <path
           fill="#0099ff"
           fillOpacity="1"
