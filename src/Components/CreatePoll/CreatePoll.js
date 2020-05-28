@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Form, Button, Navbar } from "react-bootstrap";
 import "./CreatePoll.css";
 import { CreateNewPollRequest } from "../../Redux/createAction/createAction";
-import { useDispatch } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory, Link, Redirect } from "react-router-dom";
 
 const CreatePoll = () => {
   const [title, settitle] = useState("");
@@ -20,6 +20,9 @@ const CreatePoll = () => {
     data[index] = e.target.value;
     setoptions(data);
   };
+  const state = useSelector((state) => {
+    return state.CreateNewPollstatus;
+  });
 
   const handlePollSubmit = () => {
     let poll = {
@@ -27,8 +30,7 @@ const CreatePoll = () => {
       options: options,
     };
     dispatch(CreateNewPollRequest(poll));
-
-    history.push("./dashboard");
+    console.log(state.isLoading);
   };
   console.log(options);
   const handleRemoveOption = (index) => {
@@ -36,6 +38,10 @@ const CreatePoll = () => {
     data.splice(index, 1);
     setoptions(data);
   };
+
+  if (state.isLoading === true) {
+    return <Redirect to="/admin/dashboard" />;
+  }
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">

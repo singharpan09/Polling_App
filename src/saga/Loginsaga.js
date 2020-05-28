@@ -14,6 +14,7 @@ export function* loginSaga(action) {
       `https://secure-refuge-14993.herokuapp.com/login?username=${username}&password=${password}`
     );
     let data = response.data;
+    console.log(data);
 
     if (data.error === 0) {
       localStorage.setItem("token", data.token);
