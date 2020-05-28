@@ -1,0 +1,17 @@
+.Registration {
+  width: 30%;
+  margin: 0 auto;
+}
+.reg {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  color: #0099ff;
+}
+.message {
+  display: inline;
+}
+h6 {
+  display: inline;
+  margin-left: 2%;
+}

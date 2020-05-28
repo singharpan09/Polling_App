@@ -1,0 +1,26 @@
+.title1 {
+  width: 40%;
+  margin: 0% auto;
+}
+.poll {
+  color: #0099ff;
+}
+.options {
+  width: 40%;
+  margin: 0 auto;
+}
+.optionwithbutton {
+  display: flex;
+}
+
+.Addbutton {
+  width: 40%;
+  margin: 0 auto;
+  margin-top: 1%;
+}
+.pollsubmit {
+  margin: 2%;
+}
+.removebutton {
+  margin-left: 2%;
+}
