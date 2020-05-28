@@ -36,11 +36,11 @@ const Registration = () => {
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
-        <Link to="/login">
+        <Link to="/">
           <Navbar.Brand>Polling App</Navbar.Brand>
         </Link>
 
-        <Link to="/login">
+        <Link to="/">
           <Button variant="outline-primary">Login</Button>
         </Link>
       </Navbar>

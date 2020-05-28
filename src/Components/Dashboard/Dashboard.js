@@ -18,6 +18,10 @@ const Dashboard = () => {
     return state.PollListstatus.isPollfetched;
   });
   console.log(pollstatus);
+
+  const handleClick = () => {
+    localStorage.clear();
+  };
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -27,6 +31,15 @@ const Dashboard = () => {
 
         <Link to="/createpoll">
           <Button variant="outline-primary">Create New Poll</Button>
+        </Link>
+        <Link to="/">
+          <Button
+            className="logout"
+            variant="outline-danger"
+            onClick={handleClick}
+          >
+            Log Out
+          </Button>
         </Link>
       </Navbar>
       <div className="title">

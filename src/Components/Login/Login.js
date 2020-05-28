@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { Form, Button, Navbar } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Form, Button, Navbar, Spinner } from "react-bootstrap";
 import { LoginRequest } from "../../Redux/createAction/createAction";
 import "./Login.css";
 import { useHistory, Link } from "react-router-dom";
@@ -20,6 +20,9 @@ const Login = () => {
     setusername("");
     setpassword("");
   };
+  const state = useSelector((state) => {
+    return state.Loginstatus;
+  });
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -27,7 +30,7 @@ const Login = () => {
           <Navbar.Brand>Polling App</Navbar.Brand>
         </Link>
 
-        <Link to="/">
+        <Link to="/registration">
           <Button variant="outline-primary">SignUp</Button>
         </Link>
       </Navbar>
@@ -61,8 +64,20 @@ const Login = () => {
             }}
             variant="primary"
           >
-            Submit
+            {state.isLoading ? (
+              <Spinner
+                animation="border"
+                size="sm"
+                role="status"
+                aria-hidden="true"
+              />
+            ) : (
+              "Submit"
+            )}
           </Button>
+          {state.error ? (
+            <h6 style={{ color: "red" }}>User not exists</h6>
+          ) : null}
         </Form>
       </div>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1410 300">
