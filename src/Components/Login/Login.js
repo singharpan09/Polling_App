@@ -27,7 +27,7 @@ const Login = () => {
           <Navbar.Brand>Polling App</Navbar.Brand>
         </Link>
 
-        <Link to="/signup">
+        <Link to="/">
           <Button variant="outline-primary">SignUp</Button>
         </Link>
       </Navbar>
