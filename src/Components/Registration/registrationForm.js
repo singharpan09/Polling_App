@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Form, Spinner } from "react-bootstrap";
+import { Button, Form, Spinner, Navbar } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./registrationForm.css";
 
 import { RegistationRequest } from "../../Redux/createAction/createAction";
@@ -34,6 +35,15 @@ const Registration = () => {
   // }
   return (
     <React.Fragment>
+      <Navbar bg="dark" variant="dark">
+        <Link to="/login">
+          <Navbar.Brand>Polling App</Navbar.Brand>
+        </Link>
+
+        <Link to="/login">
+          <Button variant="outline-primary">Login</Button>
+        </Link>
+      </Navbar>
       <div className="Registration">
         <h2>Signup</h2>
       </div>

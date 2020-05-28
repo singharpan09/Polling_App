@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Navbar } from "react-bootstrap";
 import "./CreatePoll.css";
 import { CreateNewPollRequest } from "../../Redux/createAction/createAction";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const CreatePoll = () => {
   const [title, settitle] = useState("");
@@ -38,6 +38,15 @@ const CreatePoll = () => {
   };
   return (
     <React.Fragment>
+      <Navbar bg="dark" variant="dark">
+        <Link to="/">
+          <Navbar.Brand>Polling App</Navbar.Brand>
+        </Link>
+
+        <Link to="/dashboard">
+          <Button variant="outline-primary">Dashboard</Button>
+        </Link>
+      </Navbar>
       <div className="poll">
         <center>
           <h3>Create New Poll</h3>

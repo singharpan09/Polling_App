@@ -1,24 +1,36 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Navbar } from "react-bootstrap";
 import { LoginRequest } from "../../Redux/createAction/createAction";
 import "./Login.css";
+import { useHistory, Link } from "react-router-dom";
 
 const Login = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const dispatch = useDispatch();
+  const history = useHistory();
   const handleSubmit = () => {
     let loginData = {
       username: username,
       password: password,
     };
     dispatch(LoginRequest(loginData));
+    history.push("./dashboard");
     setusername("");
     setpassword("");
   };
   return (
     <React.Fragment>
+      <Navbar bg="dark" variant="dark">
+        <Link to="/">
+          <Navbar.Brand>Polling App</Navbar.Brand>
+        </Link>
+
+        <Link to="/signup">
+          <Button variant="outline-primary">SignUp</Button>
+        </Link>
+      </Navbar>
       <div className="Login">
         <h2>Login</h2>
       </div>

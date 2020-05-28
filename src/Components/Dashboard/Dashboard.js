@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Card, Spinner } from "react-bootstrap";
+import { Card, Spinner, Navbar, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import "./Dashboard.css";
 
 import { AddPollRequest } from "../../Redux/createAction/createAction";
@@ -19,6 +20,15 @@ const Dashboard = () => {
   console.log(pollstatus);
   return (
     <React.Fragment>
+      <Navbar bg="dark" variant="dark">
+        <Link to="/login">
+          <Navbar.Brand>Polling App</Navbar.Brand>
+        </Link>
+
+        <Link to="/createpoll">
+          <Button variant="outline-primary">Create New Poll</Button>
+        </Link>
+      </Navbar>
       <div className="title">
         <center>
           <h3>Welcome to Poll</h3>
