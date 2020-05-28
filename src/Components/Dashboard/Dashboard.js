@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Card, Spinner, Navbar, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
 import "./Dashboard.css";
 
 import { AddPollRequest } from "../../Redux/createAction/createAction";
@@ -8,20 +8,23 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(AddPollRequest());
-  }, []);
+  const history = useHistory();
+
   const pollList = useSelector((state) => {
     return state.PollListstatus.poll;
   });
+  useEffect(() => {
+    dispatch(AddPollRequest());
+  }, []);
+
   const pollstatus = useSelector((state) => {
     return state.PollListstatus.isPollfetched;
   });
-  console.log(pollstatus);
 
-  const handleClick = () => {
+  function handleLogout() {
     localStorage.clear();
-  };
+    history.push("/");
+  }
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -36,7 +39,7 @@ const Dashboard = () => {
           <Button
             className="logout"
             variant="outline-danger"
-            onClick={handleClick}
+            onClick={handleLogout}
           >
             Log Out
           </Button>

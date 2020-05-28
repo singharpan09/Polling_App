@@ -16,13 +16,17 @@ const Login = () => {
       password: password,
     };
     dispatch(LoginRequest(loginData));
-    history.push("./dashboard");
+
     setusername("");
     setpassword("");
   };
   const state = useSelector((state) => {
     return state.Loginstatus;
   });
+
+  if (state.isLogin) {
+    history.push("./dashboard");
+  }
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
