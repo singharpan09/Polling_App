@@ -3,13 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Button, Navbar, Spinner } from "react-bootstrap";
 import { LoginRequest } from "../../Redux/createAction/createAction";
 import "./Login.css";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory, Link, Redirect } from "react-router-dom";
 
 const Login = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+  const state = useSelector((state) => {
+    return state.Loginstatus;
+  });
+
   const handleSubmit = () => {
     let loginData = {
       username: username,
@@ -20,6 +24,7 @@ const Login = () => {
     setusername("");
     setpassword("");
   };
+
   const state = useSelector((state) => {
     return state.Loginstatus;
   });
@@ -63,6 +68,7 @@ const Login = () => {
           </Form.Group>
 
           <Button
+            disabled={username && password ? false : true}
             onClick={() => {
               handleSubmit();
             }}
