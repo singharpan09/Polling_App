@@ -21,7 +21,7 @@ const Dashboard = () => {
   const pollstatus = useSelector((state) => {
     return state.PollListstatus.isPollfetched;
   });
-  console.log(pollList);
+
   const handleLogout = () => {
     localStorage.clear();
     history.push("/");
