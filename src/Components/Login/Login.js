@@ -24,7 +24,7 @@ const Login = () => {
     setusername("");
     setpassword("");
   };
-
+  console.log(state);
   if (state.isLogin) {
     history.push("/admin/dashboard");
   }
