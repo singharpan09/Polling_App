@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button, Navbar, Spinner } from "react-bootstrap";
 import { LoginRequest } from "../../Redux/createAction/createAction";
@@ -24,9 +24,12 @@ const Login = () => {
     setusername("");
     setpassword("");
   };
-  if (localStorage.getItem("token")) {
-    history.push("/admin/dashboard");
-  }
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      history.push("/admin/dashboard");
+    }
+  }, []);
   if (state.isLogin) {
     history.push("/admin/dashboard");
   }
