@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Spinner, Navbar, Button } from "react-bootstrap";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import "./Dashboard.css";
@@ -10,29 +10,22 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const pollList = useSelector((state) => {
-    return state.PollListstatus.poll;
-  });
-
   useEffect(() => {
     dispatch(ListPollRequest());
   }, []);
 
-  // useEffect(() => {
-  //   return () => {
-  //     //code cleanup code is written here
-  //     console.log("ComponentWillUnmount");
-  //   };
-  // }, []);
+  const pollList = useSelector((state) => {
+    return state.PollListstatus.poll;
+  });
 
   const pollstatus = useSelector((state) => {
     return state.PollListstatus.isPollfetched;
   });
   console.log(pollList);
-  function handleLogout() {
+  const handleLogout = () => {
     localStorage.clear();
     history.push("/");
-  }
+  };
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -43,6 +36,7 @@ const Dashboard = () => {
         <Link to="/createpoll">
           <Button variant="outline-primary">Create New Poll</Button>
         </Link>
+
         <Link to="/">
           <Button
             className="logout"

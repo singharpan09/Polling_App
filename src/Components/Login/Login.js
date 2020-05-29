@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Form, Button, Navbar, Spinner } from "react-bootstrap";
 import { LoginRequest } from "../../Redux/createAction/createAction";
 import "./Login.css";
-import { useHistory, Link, Redirect } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const Login = () => {
   const [username, setusername] = useState("");
@@ -25,12 +25,18 @@ const Login = () => {
     setpassword("");
   };
 
+  // useEffect(() => {
+  //   if (localStorage.getItem("token")) {
+  //     history.push("/admin/dashboard");
+  //   }
+  // }, []);
+  console.log(state);
   useEffect(() => {
-    if (localStorage.getItem("token")) {
-      history.push("/admin/dashboard");
+    if (localStorage.getItem("token") === false) {
+      history.push("/");
     }
-  }, []);
-  if (state.isLogin) {
+  });
+  if (state.isLogin && localStorage.getItem("token")) {
     history.push("/admin/dashboard");
   }
   return (

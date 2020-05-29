@@ -3,13 +3,12 @@ import { Form, Button, Navbar } from "react-bootstrap";
 import "./CreatePoll.css";
 import { CreateNewPollRequest } from "../../Redux/createAction/createAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, Link, Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const CreatePoll = () => {
   const [title, settitle] = useState("");
   const [options, setoptions] = useState([]);
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const handleAddOption = () => {
     setoptions((prevState) => [...prevState, ""]);
@@ -48,7 +47,7 @@ const CreatePoll = () => {
           <Navbar.Brand>Polling App</Navbar.Brand>
         </Link>
 
-        <Link to="/dashboard">
+        <Link to="admin/dashboard">
           <Button variant="outline-primary">Dashboard</Button>
         </Link>
       </Navbar>
