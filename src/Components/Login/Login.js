@@ -24,7 +24,9 @@ const Login = () => {
     setusername("");
     setpassword("");
   };
-  console.log(state);
+  if (localStorage.getItem("token")) {
+    history.push("/admin/dashboard");
+  }
   if (state.isLogin) {
     history.push("/admin/dashboard");
   }
@@ -65,9 +67,8 @@ const Login = () => {
 
           <Button
             disabled={username && password ? false : true}
-            onClick={() => {
-              handleSubmit();
-            }}
+            onClick={handleSubmit}
+            type="submit"
             variant="primary"
           >
             {state.isLoading ? (

@@ -30,9 +30,8 @@ const CreatePoll = () => {
       options: options,
     };
     dispatch(CreateNewPollRequest(poll));
-    console.log(state.isLoading);
   };
-  console.log(options);
+
   const handleRemoveOption = (index) => {
     const data = [...options];
     data.splice(index, 1);

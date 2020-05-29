@@ -13,14 +13,22 @@ const Dashboard = () => {
   const pollList = useSelector((state) => {
     return state.PollListstatus.poll;
   });
+
   useEffect(() => {
     dispatch(ListPollRequest());
   }, []);
 
+  // useEffect(() => {
+  //   return () => {
+  //     //code cleanup code is written here
+  //     console.log("ComponentWillUnmount");
+  //   };
+  // }, []);
+
   const pollstatus = useSelector((state) => {
     return state.PollListstatus.isPollfetched;
   });
-
+  console.log(pollList);
   function handleLogout() {
     localStorage.clear();
     history.push("/");
@@ -54,11 +62,11 @@ const Dashboard = () => {
         <Spinner className="spinner" animation="border" variant="primary" />
       ) : null}
       {pollList.map((item) => (
-        <Card className="Card" key={item._id}>
+        <Card key={item._id} className="Card">
           <div className="Card1">
             <Card.Title>Title :{item.title}</Card.Title>
-            {item.options.map((option) => (
-              <div>
+            {item.options.map((option, i) => (
+              <div key={i}>
                 <input type="radio" />
                 <label>{option.option}</label>
               </div>

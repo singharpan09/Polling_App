@@ -82,6 +82,7 @@ const Registration = () => {
           </Form.Group>
           <Button
             variant="primary"
+            type="submit"
             disabled={username && password ? false : true}
             onClick={() => handlesubmit()}
           >
