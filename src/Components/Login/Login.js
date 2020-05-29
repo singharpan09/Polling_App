@@ -25,8 +25,12 @@ const Login = () => {
     setpassword("");
   };
 
+  const state = useSelector((state) => {
+    return state.Loginstatus;
+  });
+
   if (state.isLogin) {
-    return <Redirect to="/admin/dashboard" />;
+    history.push("./dashboard");
   }
   return (
     <React.Fragment>
@@ -35,7 +39,7 @@ const Login = () => {
           <Navbar.Brand>Polling App</Navbar.Brand>
         </Link>
 
-        <Link to="/">
+        <Link to="/registration">
           <Button variant="outline-primary">SignUp</Button>
         </Link>
       </Navbar>

@@ -8,11 +8,9 @@ import {
 export function* CreateNewPollSaga(action) {
   let option = action.payload.options;
   let title = action.payload.title;
-
   let length = option.length;
-
   let optionString = "";
-  //no underscore for last string
+
   option.map((opt, index) => {
     if (index === length - 1) {
       optionString += opt;
