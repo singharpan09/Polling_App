@@ -40,7 +40,7 @@ const CreatePoll = () => {
   };
 
   if (state.isLoading === true) {
-    return <Redirect to="/admin/dashboard" />;
+    return <Redirect to="admin/dashboard" />;
   }
   return (
     <React.Fragment>

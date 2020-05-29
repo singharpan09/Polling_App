@@ -10,17 +10,14 @@ import PrivateRouting from "./PrivateRouting";
 
 function App() {
   return (
-    <React.Fragment>
-      <BrowserRouter>
-
-          <Route exact path="/" component={Login} />
-          <Route path="/registration" component={Registration} />
-          <PrivateRouting path="/dashboard" component={Dashboard} />
-          <PrivateRouting path="/createpoll" component={CreatePoll} />
-
-        </Switch>
-      </BrowserRouter>
-    </React.Fragment>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route path="/registration" component={Registration} />
+        <PrivateRouting path="/admin/dashboard" component={Dashboard} />
+        <PrivateRouting path="/createpoll" component={CreatePoll} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 

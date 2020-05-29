@@ -25,12 +25,8 @@ const Login = () => {
     setpassword("");
   };
 
-  const state = useSelector((state) => {
-    return state.Loginstatus;
-  });
-
   if (state.isLogin) {
-    history.push("./dashboard");
+    history.push("/admin/dashboard");
   }
   return (
     <React.Fragment>
