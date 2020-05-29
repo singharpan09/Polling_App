@@ -9,9 +9,9 @@ export const LoginRequest = createAction(actions.Login_Request);
 export const LoginSuccess = createAction(actions.Login_Sucess);
 export const LoginError = createAction(actions.Login_Error);
 
-export const AddPollRequest = createAction(actions.Add_PollRequest);
-export const AddPollSuccess = createAction(actions.Add_PollSuccess);
-export const AddPollError = createAction(actions.Add_PollError);
+export const ListPollRequest = createAction(actions.List_PollRequest);
+export const ListPollSuccess = createAction(actions.List_PollSuccess);
+export const ListPollError = createAction(actions.List_PollError);
 
 export const CreateNewPollRequest = createAction(actions.Create_NewPollRequest);
 export const CreateNewPollSuccess = createAction(actions.Create_NewPollSuccess);

@@ -3,7 +3,7 @@ import { Card, Spinner, Navbar, Button } from "react-bootstrap";
 import { Link, useHistory, Redirect } from "react-router-dom";
 import "./Dashboard.css";
 
-import { AddPollRequest } from "../../Redux/createAction/createAction";
+import { ListPollRequest } from "../../Redux/createAction/createAction";
 import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
@@ -14,7 +14,7 @@ const Dashboard = () => {
     return state.PollListstatus.poll;
   });
   useEffect(() => {
-    dispatch(AddPollRequest());
+    dispatch(ListPollRequest());
   }, []);
 
   const pollstatus = useSelector((state) => {
