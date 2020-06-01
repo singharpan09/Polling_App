@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, InputGroup, FormControl } from "react-bootstrap";
 
 const UpdateTitle = (props) => {
   const [show, setShow] = useState(false);
@@ -9,15 +9,13 @@ const UpdateTitle = (props) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Update
-      </Button>
-
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Title</Modal.Title>
         </Modal.Header>
-        <Modal.Body>There would be new changes</Modal.Body>
+        <InputGroup>
+          <FormControl value={props.Title} onChange={props.onTitleChange} />
+        </InputGroup>
         <Modal.Footer>
           <Button variant="primary" onClick={handleClose}>
             Update

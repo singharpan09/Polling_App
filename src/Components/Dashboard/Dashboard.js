@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Spinner, Navbar, Button, Pagination } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import "./Dashboard.css";
-// import UpdateTitle from "../Updatepoll/UpdateTitle";
+import UpdateTitle from "../Updatepoll/UpdatePollTitle";
 import { ListPollRequest } from "../../Redux/createAction/createAction";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -10,7 +10,7 @@ const Dashboard = () => {
   const [pageSize, setpageSize] = useState(0);
 
   const [currentlength, setcurrentlength] = useState(5);
-  // const [currentPage, setcurrentPage] = useState(1);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
