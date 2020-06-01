@@ -43,7 +43,7 @@ const Dashboard = () => {
   const handlePrevPage = () => {
     setpageSize((prev) => prev - 5);
   };
-  console.log(pageSize);
+
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
