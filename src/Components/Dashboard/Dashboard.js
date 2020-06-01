@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Spinner, Navbar, Button } from "react-bootstrap";
+import { Card, Spinner, Navbar, Button, Pagination } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import "./Dashboard.css";
 // import UpdateTitle from "../Updatepoll/UpdateTitle";
@@ -7,6 +7,9 @@ import { ListPollRequest } from "../../Redux/createAction/createAction";
 import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
+  const [pageSize, setpageSize] = useState(0);
+  const [currentlength, setcurrentlength] = useState(5);
+  // const [currentPage, setcurrentPage] = useState(1);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -21,15 +24,26 @@ const Dashboard = () => {
   const pollstatus = useSelector((state) => {
     return state.PollListstatus.isPollfetched;
   });
-
-  useEffect(() => {
-    console.log(pollList.length / 5);
-  });
+  const poll = [...pollList].reverse();
 
   const handleLogout = () => {
     localStorage.clear();
     history.push("/");
   };
+
+  const currentPage = poll.slice(pageSize, pageSize + 5);
+
+  useEffect(() => {
+    setcurrentlength(currentPage.length);
+  });
+
+  const handleNextPage = () => {
+    setpageSize((prev) => prev + 5);
+  };
+  const handlePrevPage = () => {
+    setpageSize((prev) => prev - 5);
+  };
+
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -60,7 +74,7 @@ const Dashboard = () => {
         <Spinner className="spinner" animation="border" variant="primary" />
       ) : null}
       {/* <UpdateTitle /> */}
-      {pollList.map((item) => (
+      {currentPage.map((item) => (
         <Card key={item._id} className="Card">
           <Card.Body>
             <div className="Card1">
@@ -78,6 +92,24 @@ const Dashboard = () => {
           </Card.Body>
         </Card>
       ))}
+
+      {poll.length !== 0 && (
+        <Pagination>
+          <Pagination.Prev
+            disabled={pageSize == 0 ? true : false}
+            onClick={handlePrevPage}
+          >
+            Prev
+          </Pagination.Prev>
+
+          <Pagination.Next
+            disabled={pageSize >= 75 ? true : false}
+            onClick={handleNextPage}
+          >
+            Next
+          </Pagination.Next>
+        </Pagination>
+      )}
     </React.Fragment>
   );
 };
