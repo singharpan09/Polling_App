@@ -26,6 +26,12 @@ const Login = () => {
   };
 
   useEffect(() => {
+    if (localStorage.getItem("token")) {
+      history.push("/admin/dashboard");
+    }
+  }, []);
+
+  useEffect(() => {
     if (localStorage.getItem("token") === false) {
       history.push("/");
     }
