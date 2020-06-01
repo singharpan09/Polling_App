@@ -75,7 +75,7 @@ const Dashboard = () => {
       {pollstatus === false ? (
         <Spinner className="spinner" animation="border" variant="primary" />
       ) : null}
-      {/* <UpdateTitle /> */}
+      <UpdateTitle />
       {currentPage.map((item) => (
         <Card key={item._id} className="Card">
           <Card.Body>

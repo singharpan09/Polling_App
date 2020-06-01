@@ -9,6 +9,9 @@ const UpdateTitle = (props) => {
 
   return (
     <>
+      <Button variant="primary" onClick={handleShow}>
+        Update Title
+      </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Title</Modal.Title>
