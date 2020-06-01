@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
 
-const UpdateTitle = () => {
+const UpdateTitle = (props) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -9,7 +10,7 @@ const UpdateTitle = () => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Launch demo modal
+        Update
       </Button>
 
       <Modal show={show} onHide={handleClose}>

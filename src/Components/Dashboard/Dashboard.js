@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Spinner, Navbar, Button } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import "./Dashboard.css";
-
+// import UpdateTitle from "../Updatepoll/UpdateTitle";
 import { ListPollRequest } from "../../Redux/createAction/createAction";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -20,6 +20,10 @@ const Dashboard = () => {
 
   const pollstatus = useSelector((state) => {
     return state.PollListstatus.isPollfetched;
+  });
+
+  useEffect(() => {
+    console.log(pollList.length / 5);
   });
 
   const handleLogout = () => {
@@ -55,6 +59,7 @@ const Dashboard = () => {
       {pollstatus === false ? (
         <Spinner className="spinner" animation="border" variant="primary" />
       ) : null}
+      {/* <UpdateTitle /> */}
       {pollList.map((item) => (
         <Card key={item._id} className="Card">
           <Card.Body>
