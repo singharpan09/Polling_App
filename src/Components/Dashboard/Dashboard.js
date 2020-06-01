@@ -57,15 +57,20 @@ const Dashboard = () => {
       ) : null}
       {pollList.map((item) => (
         <Card key={item._id} className="Card">
-          <div className="Card1">
-            <Card.Title>Title :{item.title}</Card.Title>
-            {item.options.map((option, i) => (
-              <div key={i}>
-                <input type="radio" />
-                <label>{option.option}</label>
-              </div>
-            ))}
-          </div>
+          <Card.Body>
+            <div className="Card1">
+              <Card.Title>Title :{item.title}</Card.Title>
+              {item.options.map((option, i) => (
+                <div key={i}>
+                  <input type="radio" />
+                  <label>{option.option}</label>
+                </div>
+              ))}
+            </div>
+
+            <hr />
+            <Button variant="outline-warning">Update Title</Button>
+          </Card.Body>
         </Card>
       ))}
     </React.Fragment>
