@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Card, Spinner, Navbar, Button } from "react-bootstrap";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Dashboard.css";
 
 import { ListPollRequest } from "../../Redux/createAction/createAction";
