@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
   const [pageSize, setpageSize] = useState(0);
+
   const [currentlength, setcurrentlength] = useState(5);
   // const [currentPage, setcurrentPage] = useState(1);
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Dashboard = () => {
   const pollstatus = useSelector((state) => {
     return state.PollListstatus.isPollfetched;
   });
+
   const poll = [...pollList].reverse();
 
   const handleLogout = () => {
@@ -32,7 +34,7 @@ const Dashboard = () => {
   };
 
   const currentPage = poll.slice(pageSize, pageSize + 5);
-
+  console.log(currentPage);
   useEffect(() => {
     setcurrentlength(currentPage.length);
   });
