@@ -2,8 +2,8 @@ import * as actions from "../Redux/actionTypes/actionsTypes";
 import { takeLatest, call, put } from "redux-saga/effects";
 import axios from "axios";
 import {
-  AddPollSuccess,
-  AddPollError,
+  ListPollSuccess,
+  ListPollError,
 } from "../Redux/createAction/createAction";
 export function* Listsaga(action) {
   try {
@@ -13,15 +13,15 @@ export function* Listsaga(action) {
     );
 
     if (response) {
-      yield put(AddPollSuccess({ response: response.data.data }));
+      yield put(ListPollSuccess({ response: response.data.data }));
     } else {
-      yield put(AddPollError({ error: response.error }));
+      yield put(ListPollError({ error: response.error }));
     }
   } catch (error) {
-    yield put(AddPollError({ error: error }));
+    yield put(ListPollError({ error: error }));
   }
 }
 
 export function* PollListRequest() {
-  yield takeLatest(actions.Add_PollRequest, Listsaga);
+  yield takeLatest(actions.List_PollRequest, Listsaga);
 }

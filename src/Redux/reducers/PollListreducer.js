@@ -8,13 +8,13 @@ const initialState = {
 
 const PollListreducer = (state = initialState, action) => {
   switch (action.type) {
-    case actions.Add_PollRequest:
+    case actions.List_PollRequest:
       return {
         ...state,
         isLoading: true,
       };
 
-    case actions.Add_PollSuccess:
+    case actions.List_PollSuccess:
       return {
         ...state,
         isLoading: false,
@@ -22,7 +22,7 @@ const PollListreducer = (state = initialState, action) => {
         poll: action.payload.response,
       };
 
-    case actions.Add_PollError:
+    case actions.List_PollError:
       return {
         ...state,
         isPollfetched: false,

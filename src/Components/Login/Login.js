@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button, Navbar, Spinner } from "react-bootstrap";
 import { LoginRequest } from "../../Redux/createAction/createAction";
 import "./Login.css";
-import { useHistory, Link, Redirect } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const Login = () => {
   const [username, setusername] = useState("");
@@ -24,8 +24,13 @@ const Login = () => {
     setusername("");
     setpassword("");
   };
-  console.log(state);
-  if (state.isLogin) {
+
+  useEffect(() => {
+    if (localStorage.getItem("token") === false) {
+      history.push("/");
+    }
+  });
+  if (state.isLogin && localStorage.getItem("token")) {
     history.push("/admin/dashboard");
   }
   return (
@@ -65,9 +70,8 @@ const Login = () => {
 
           <Button
             disabled={username && password ? false : true}
-            onClick={() => {
-              handleSubmit();
-            }}
+            onClick={handleSubmit}
+            type="submit"
             variant="primary"
           >
             {state.isLoading ? (

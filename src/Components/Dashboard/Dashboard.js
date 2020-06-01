@@ -1,30 +1,31 @@
 import React, { useEffect } from "react";
 import { Card, Spinner, Navbar, Button } from "react-bootstrap";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./Dashboard.css";
 
-import { AddPollRequest } from "../../Redux/createAction/createAction";
+import { ListPollRequest } from "../../Redux/createAction/createAction";
 import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  useEffect(() => {
+    dispatch(ListPollRequest());
+  }, []);
+
   const pollList = useSelector((state) => {
     return state.PollListstatus.poll;
   });
-  useEffect(() => {
-    dispatch(AddPollRequest());
-  }, []);
 
   const pollstatus = useSelector((state) => {
     return state.PollListstatus.isPollfetched;
   });
 
-  function handleLogout() {
+  const handleLogout = () => {
     localStorage.clear();
     history.push("/");
-  }
+  };
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -35,6 +36,7 @@ const Dashboard = () => {
         <Link to="/createpoll">
           <Button variant="outline-primary">Create New Poll</Button>
         </Link>
+
         <Link to="/">
           <Button
             className="logout"
@@ -54,11 +56,11 @@ const Dashboard = () => {
         <Spinner className="spinner" animation="border" variant="primary" />
       ) : null}
       {pollList.map((item) => (
-        <Card className="Card" key={item._id}>
+        <Card key={item._id} className="Card">
           <div className="Card1">
             <Card.Title>Title :{item.title}</Card.Title>
-            {item.options.map((option) => (
-              <div>
+            {item.options.map((option, i) => (
+              <div key={i}>
                 <input type="radio" />
                 <label>{option.option}</label>
               </div>

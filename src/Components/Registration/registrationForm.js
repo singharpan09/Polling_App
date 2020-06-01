@@ -3,15 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Spinner, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./registrationForm.css";
-
 import { RegistationRequest } from "../../Redux/createAction/createAction";
-import { useHistory } from "react-router-dom";
 
 const Registration = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [option, setoptions] = useState("Admin");
-  const history = useHistory();
 
   const dispatch = useDispatch();
   const state = useSelector((state) => {
@@ -30,9 +27,7 @@ const Registration = () => {
     setusername("");
     setpassword("");
   };
-  // if (regisstatus.isRegistered) {
-  //   history.push("./login");
-  // }
+
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -82,6 +77,7 @@ const Registration = () => {
           </Form.Group>
           <Button
             variant="primary"
+            type="submit"
             disabled={username && password ? false : true}
             onClick={() => handlesubmit()}
           >
