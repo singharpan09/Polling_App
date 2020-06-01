@@ -13,7 +13,3 @@ export const List_PollError = "List_PollError";
 export const Create_NewPollRequest = "Create_NewPollRequest";
 export const Create_NewPollSuccess = "Create_NewPollSuccess";
 export const Create_NewPollError = "Create_NewPollError";
-
-export const Update_PollTitleRequest = "Update_PollTitleRequest";
-export const Update_PollTitleSuccess = "Update_PollTitleSuccess";
-export const Update_PollTitleError = "Update_PollTitleError";

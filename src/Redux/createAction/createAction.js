@@ -16,11 +16,3 @@ export const ListPollError = createAction(actions.List_PollError);
 export const CreateNewPollRequest = createAction(actions.Create_NewPollRequest);
 export const CreateNewPollSuccess = createAction(actions.Create_NewPollSuccess);
 export const CreateNewPollError = createAction(actions.Create_NewPollError);
-
-export const UpdatePollTitleRequest = createAction(
-  actions.Update_PollTitleRequest
-);
-export const UpdatePollTitleSuccess = createAction(
-  actions.Update_PollTitleSuccess
-);
-export const UpdatePollTitleError = createAction(actions.Update_PollTitleError);
