@@ -2,6 +2,7 @@ import * as actions from "../../Redux/actionTypes/actionsTypes";
 import {
   UpdatePollTitleSuccess,
   UpdatePollTitleError,
+  ListPollRequest,
 } from "../../Redux/createAction/createAction";
 import axios from "axios";
 import { takeLatest, call, put } from "redux-saga/effects";
@@ -17,6 +18,7 @@ export function* UpdateTitleSaga(action) {
   let data = response.data;
 
   if (data.error == 0) {
+    yield put(ListPollRequest());
     yield put(UpdatePollTitleSuccess({ response: data }));
   } else {
     yield put(UpdatePollTitleError({ error: data }));
