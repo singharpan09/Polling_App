@@ -71,6 +71,9 @@ const Dashboard = () => {
 
   const _handleUpdateTitle = () => {
     UpdatePollTitleRequest(id, Title);
+    setshowTitleUpdate(false);
+    setTitle("");
+    setid("");
   };
 
   return (
