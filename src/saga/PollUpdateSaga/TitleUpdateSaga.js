@@ -3,11 +3,24 @@ import {
   UpdatePollTitleSuccess,
   UpdatePollTitleError,
 } from "../../Redux/createAction/createAction";
-import Axios from "axios";
-import { takeLatest } from "redux-saga/effects";
+import axios from "axios";
+import { takeLatest, call, put } from "redux-saga/effects";
 
 export function* UpdateTitleSaga(action) {
-  console.log(action.payload);
+  let title = action.payload.Title;
+  let id = action.payload.id;
+  console.log(title, id);
+  let response = yield call(
+    axios.get,
+    `https://secure-refuge-14993.herokuapp.com/update_poll_title?id=${id}&title=${title}`
+  );
+  let data = response.data;
+
+  if (data.error == 0) {
+    yield put(UpdatePollTitleSuccess({ response: data }));
+  } else {
+    yield put(UpdatePollTitleError({ error: data }));
+  }
 }
 
 export function* UpdateTitleRequest() {

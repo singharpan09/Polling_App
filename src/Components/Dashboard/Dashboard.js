@@ -17,6 +17,7 @@ const Dashboard = () => {
   const [id, setid] = useState("");
 
   const dispatch = useDispatch();
+  const dispatch1 = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
@@ -70,7 +71,12 @@ const Dashboard = () => {
   };
 
   const _handleUpdateTitle = () => {
-    UpdatePollTitleRequest(id, Title);
+    let titleUpdate = {
+      id: id,
+      Title: Title,
+    };
+
+    dispatch1(UpdatePollTitleRequest(titleUpdate));
     setshowTitleUpdate(false);
     setTitle("");
     setid("");
