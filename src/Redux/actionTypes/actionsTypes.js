@@ -17,3 +17,7 @@ export const Create_NewPollError = "Create_NewPollError";
 export const Update_PollTitleRequest = "Update_PollTitleRequest";
 export const Update_PollTitleSuccess = "Update_PollTitleSuccess";
 export const Update_PollTitleError = "Update_PollTitleError";
+
+export const Delete_PollRequest = "Delete_PollRequest";
+export const Delete_PollSuccess = "Delete_PollSuccess";
+export const Delete_PollError = "Delete_PollError";

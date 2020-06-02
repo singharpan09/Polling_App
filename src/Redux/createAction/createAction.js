@@ -24,3 +24,7 @@ export const UpdatePollTitleSuccess = createAction(
   actions.Update_PollTitleSuccess
 );
 export const UpdatePollTitleError = createAction(actions.Update_PollTitleError);
+
+export const DeletePollRequest = createAction(actions.Delete_PollRequest);
+export const DeletePollSuccess = createAction(actions.Delete_PollSuccess);
+export const DeletePollError = createAction(actions.Delete_PollError);

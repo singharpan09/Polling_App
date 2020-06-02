@@ -6,6 +6,7 @@ import UpdateTitle from "../Updatepoll/UpdatePollTitle";
 import { ListPollRequest } from "../../Redux/createAction/createAction";
 import { UpdatePollTitleRequest } from "../../Redux/createAction/createAction";
 import { useDispatch, useSelector } from "react-redux";
+import DeletePoll from "../Updatepoll/DeletePoll";
 
 const Dashboard = () => {
   const [pageSize, setpageSize] = useState(0);
@@ -82,6 +83,11 @@ const Dashboard = () => {
     setid("");
   };
 
+  const _handleCloseDeleteModel = () => {
+    setshowTitleUpdate(!showTitleUpdate);
+  };
+
+  const _handleDeletePoll = () => {};
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -120,6 +126,15 @@ const Dashboard = () => {
           _handleUpdateTitle();
         }}
       />
+
+      <DeletePoll
+        show={showTitleUpdate}
+        title={Title}
+        onCloseDeleteModel={() => {
+          _handleCloseDeleteModel();
+        }}
+        onDeletePoll={() => _handleDeletePoll()}
+      />
       {currentPage.map((item) => (
         <Card key={item._id} className="Card">
           <Card.Body>
@@ -132,7 +147,6 @@ const Dashboard = () => {
                 </div>
               ))}
             </div>
-
             <hr />
             <Button
               variant="outline-warning"
@@ -141,6 +155,15 @@ const Dashboard = () => {
               }}
             >
               Update Title
+            </Button>
+            <Button
+              className="ml-2"
+              variant="outline-danger"
+              onClick={() => {
+                _handleshowTitle(item.title, item._id);
+              }}
+            >
+              Delete Poll
             </Button>
           </Card.Body>
         </Card>
