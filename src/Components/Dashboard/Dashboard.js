@@ -4,12 +4,17 @@ import { Link, useHistory } from "react-router-dom";
 import "./Dashboard.css";
 import UpdateTitle from "../Updatepoll/UpdatePollTitle";
 import { ListPollRequest } from "../../Redux/createAction/createAction";
+import { UpdatePollTitleRequest } from "../../Redux/createAction/createAction";
 import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
   const [pageSize, setpageSize] = useState(0);
+  const [latestPoll, setlatestPoll] = useState([]);
 
   const [currentlength, setcurrentlength] = useState(5);
+  const [showTitleUpdate, setshowTitleUpdate] = useState(false);
+  const [Title, setTitle] = useState("");
+  const [id, setid] = useState("");
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -26,7 +31,11 @@ const Dashboard = () => {
     return state.PollListstatus.isPollfetched;
   });
 
-  const poll = [...pollList].reverse();
+  useEffect(() => {
+    setlatestPoll(pollList);
+  }, [pollList]);
+
+  const poll = [...latestPoll].reverse();
 
   const handleLogout = () => {
     localStorage.clear();
@@ -34,7 +43,7 @@ const Dashboard = () => {
   };
 
   const currentPage = poll.slice(pageSize, pageSize + 5);
-  console.log(currentPage);
+
   useEffect(() => {
     setcurrentlength(currentPage.length);
   });
@@ -44,6 +53,24 @@ const Dashboard = () => {
   };
   const handlePrevPage = () => {
     setpageSize((prev) => prev - 5);
+  };
+
+  const _handleshowTitle = (title, id) => {
+    setshowTitleUpdate(true);
+    setTitle(title);
+    setid(id);
+  };
+  const _handletitleChange = (e) => {
+    e.preventDefault();
+    setTitle(e.target.value);
+  };
+
+  const _handlecloseModel = () => {
+    setshowTitleUpdate(false);
+  };
+
+  const _handleUpdateTitle = () => {
+    UpdatePollTitleRequest(id, Title);
   };
 
   return (
@@ -75,7 +102,15 @@ const Dashboard = () => {
       {pollstatus === false ? (
         <Spinner className="spinner" animation="border" variant="primary" />
       ) : null}
-      <UpdateTitle />
+      <UpdateTitle
+        show={showTitleUpdate}
+        onCloseModel={() => _handlecloseModel()}
+        title={Title}
+        onTitleChange={(e) => _handletitleChange(e)}
+        onUpdateTitle={() => {
+          _handleUpdateTitle();
+        }}
+      />
       {currentPage.map((item) => (
         <Card key={item._id} className="Card">
           <Card.Body>
@@ -90,7 +125,14 @@ const Dashboard = () => {
             </div>
 
             <hr />
-            <Button variant="outline-warning">Update Title</Button>
+            <Button
+              variant="outline-warning"
+              onClick={() => {
+                _handleshowTitle(item.title, item._id);
+              }}
+            >
+              Update Title
+            </Button>
           </Card.Body>
         </Card>
       ))}
