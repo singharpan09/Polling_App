@@ -87,6 +87,7 @@ const Dashboard = () => {
     };
 
     dispatch1(UpdatePollTitleRequest(titleUpdate));
+
     setshowTitleUpdate(false);
     setTitle("");
     setid("");
