@@ -3,6 +3,7 @@ import { takeLatest, put, call } from "redux-saga/effects";
 import { LoginSuccess, LoginError } from "../Redux/createAction/createAction";
 import * as actions from "../Redux/actionTypes/actionsTypes";
 import axios from "axios";
+import jwt from "jsonwebtoken";
 
 export function* loginSaga(action) {
   try {
@@ -14,11 +15,11 @@ export function* loginSaga(action) {
       `https://secure-refuge-14993.herokuapp.com/login?username=${username}&password=${password}`
     );
     let data = response.data;
-    console.log(data);
 
     if (data.error === 0) {
       localStorage.setItem("token", data.token);
-      yield put(LoginSuccess({ response: data }));
+      let user = jwt.verify(data.token, "jwt_tok");
+      yield put(LoginSuccess({ response: { data: data, role: user.role } }));
     } else {
       yield put(LoginError({ error: data }));
     }

@@ -26,8 +26,19 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem("token")) {
+    if (
+      localStorage.getItem("token") &&
+      localStorage.getItem("userType") === "admin"
+    ) {
       history.push("/admin/dashboard");
+    } else if (
+      localStorage.getItem("token") &&
+      localStorage.getItem("userType") === "Guest"
+    ) {
+      history.push("/dashboard");
+    } else {
+      localStorage.clear();
+      history.push("/");
     }
   }, []);
 
@@ -36,9 +47,35 @@ const Login = () => {
       history.push("/");
     }
   });
+
+  // useEffect(() => {
+  //   if (
+  //     state.isLogin &&
+  //     localStorage.getItem("token") &&
+  //     state.response.role === "admin"
+  //   ) {
+  //     history.push("admin/dashboard");
+  //   } else if (
+  //     state.isLogin &&
+  //     localStorage.getItem("token") &&
+  //     state.response.role === "Guest"
+  //   ) {
+  //     history.push("dashboard");
+  //   } else {
+  //     history.push("/");
+  //   }
+  // });
+
   if (state.isLogin && localStorage.getItem("token")) {
-    history.push("/admin/dashboard");
+    if (state.response.role === "admin") {
+      history.push("/admin/dashboard");
+      localStorage.setItem("userType", state.response.role);
+    } else if (state.response.role === "Guest") {
+      history.push("/dashboard");
+      localStorage.setItem("userType", state.response.role);
+    }
   }
+
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">

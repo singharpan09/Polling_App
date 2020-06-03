@@ -199,7 +199,7 @@ const Dashboard = () => {
               <Card.Title>Title :{item.title}</Card.Title>
               {item.options.map((option, i) => (
                 <div key={i}>
-                  <input type="radio" />
+                  <input type="radio" name={item._id} />
                   <label>{option.option}</label>
                   <Button
                     onClick={() => _handleOptionDelete(option.option, item._id)}
@@ -244,7 +244,7 @@ const Dashboard = () => {
           </Pagination.Prev>
 
           <Pagination.Next
-            disabled={pageSize >= 75 ? true : false}
+            disabled={pageSize >= 70 ? true : false}
             onClick={handleNextPage}
           >
             Next
