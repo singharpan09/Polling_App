@@ -63,19 +63,6 @@ const Login = () => {
     }
   });
 
-  // if (state.isLogin && localStorage.getItem("token")) {
-  //   if (state.response.role === "admin") {
-  //     history.push("/admin/dashboard");
-  //     localStorage.setItem("userType", state.response.role);
-  //   } else if (state.response.role === "Guest") {
-  //     history.push("/dashboard");
-  //     localStorage.setItem("userType", state.response.role);
-  //   } else {
-  //     localStorage.clear();
-  //     history.push("/");
-  //   }
-  // }
-
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
