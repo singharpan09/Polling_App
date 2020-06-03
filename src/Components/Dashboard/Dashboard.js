@@ -8,10 +8,12 @@ import {
   UpdatePollTitleRequest,
   DeletePollRequest,
   DeleteOptionRequest,
+  AddNewOptionRequest,
 } from "../../Redux/createAction/createAction";
 import { useDispatch, useSelector } from "react-redux";
 import DeletePoll from "../Updatepoll/DeletePoll";
 import DeleteOption from "../Updatepoll/DeleteOption";
+import AddNewOption from "../Updatepoll/AddNewOption";
 
 const Dashboard = () => {
   const [pageSize, setpageSize] = useState(0);
@@ -21,6 +23,7 @@ const Dashboard = () => {
   const [showTitleUpdate, setshowTitleUpdate] = useState(false);
   const [showDeletePoll, setshowDeletePoll] = useState(false);
   const [showDeleteOption, setshowDeleteOption] = useState(false);
+  const [showAddNewOption, setshowAddNewOption] = useState(false);
   const [Title, setTitle] = useState("");
   const [id, setid] = useState("");
 
@@ -28,6 +31,7 @@ const Dashboard = () => {
   const dispatch1 = useDispatch();
   const dispatch2 = useDispatch();
   const dispatch3 = useDispatch();
+  const dispatch4 = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
@@ -134,6 +138,31 @@ const Dashboard = () => {
     setTitle("");
   };
 
+  const _handleAddNewOption = (id) => {
+    setid(id);
+    setshowAddNewOption(true);
+  };
+  const _handleCloseNewOption = () => {
+    setshowAddNewOption(false);
+  };
+
+  const _handleOptionChange = (e) => {
+    setTitle(e.target.value);
+  };
+  const _handleUpdateOption = () => {
+    let Optiondata = {
+      id: id,
+      option: Title,
+    };
+    dispatch4(AddNewOptionRequest(Optiondata));
+    setid("");
+    setTitle("");
+    setshowAddNewOption(false);
+  };
+  const state1 = useSelector((state) => {
+    return state.Votestatus;
+  });
+  console.log(state1);
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -192,6 +221,17 @@ const Dashboard = () => {
           _handleDeletePollOption();
         }}
       />
+      <AddNewOption
+        show={showAddNewOption}
+        onCloseNewOption={() => _handleCloseNewOption()}
+        onOptionChange={(e) => {
+          _handleOptionChange(e);
+        }}
+        title={Title}
+        onUpdateOption={() => {
+          _handleUpdateOption();
+        }}
+      />
       {currentPage.map((item) => (
         <Card key={item._id} className="Card">
           <Card.Body>
@@ -229,6 +269,15 @@ const Dashboard = () => {
               }}
             >
               Delete Poll
+            </Button>
+            <Button
+              onClick={() => {
+                _handleAddNewOption(item._id);
+              }}
+              className="ml-2"
+              variant="outline-warning"
+            >
+              Add Option
             </Button>
           </Card.Body>
         </Card>

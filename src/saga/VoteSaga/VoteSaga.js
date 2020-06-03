@@ -29,7 +29,6 @@ export function* VoteSaga(action) {
   } else {
     yield put(VoteError({ error: data }));
   }
-  console.log(response);
 }
 
 export function* VoteRequest() {

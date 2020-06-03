@@ -26,6 +26,10 @@ export const Delete_OptionRequest = "Delete_OptionRequest";
 export const Delete_OptionSuccess = "Delete_OptionSuccess";
 export const Delete_OptionError = "Delete_OptionError";
 
+export const AddNew_OptionRequest = "AddNew_OptionRequest";
+export const AddNew_OptionSuccess = "AddNew_OptionSuccess";
+export const AddNew_OptionError = "AddNew_OptionError";
+
 export const Vote_Request = "Vote_Request";
 export const Vote_Success = "Vote_Success";
 export const Vote_Error = "Vote_Error";
