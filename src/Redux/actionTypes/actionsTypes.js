@@ -21,3 +21,7 @@ export const Update_PollTitleError = "Update_PollTitleError";
 export const Delete_PollRequest = "Delete_PollRequest";
 export const Delete_PollSuccess = "Delete_PollSuccess";
 export const Delete_PollError = "Delete_PollError";
+
+export const Delete_OptionRequest = "Delete_OptionRequest";
+export const Delete_OptionSuccess = "Delete_OptionSuccess";
+export const Delete_OptionError = "Delete_OptionError";

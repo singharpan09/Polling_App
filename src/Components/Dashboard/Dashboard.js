@@ -7,9 +7,11 @@ import { ListPollRequest } from "../../Redux/createAction/createAction";
 import {
   UpdatePollTitleRequest,
   DeletePollRequest,
+  DeleteOptionRequest,
 } from "../../Redux/createAction/createAction";
 import { useDispatch, useSelector } from "react-redux";
 import DeletePoll from "../Updatepoll/DeletePoll";
+import DeleteOption from "../Updatepoll/DeleteOption";
 
 const Dashboard = () => {
   const [pageSize, setpageSize] = useState(0);
@@ -18,12 +20,14 @@ const Dashboard = () => {
   const [currentlength, setcurrentlength] = useState(5);
   const [showTitleUpdate, setshowTitleUpdate] = useState(false);
   const [showDeletePoll, setshowDeletePoll] = useState(false);
+  const [showDeleteOption, setshowDeleteOption] = useState(false);
   const [Title, setTitle] = useState("");
   const [id, setid] = useState("");
 
   const dispatch = useDispatch();
   const dispatch1 = useDispatch();
   const dispatch2 = useDispatch();
+  const dispatch3 = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
@@ -108,6 +112,27 @@ const Dashboard = () => {
     setshowDeletePoll(false);
   };
 
+  const _handleOptionDelete = (option, id) => {
+    setTitle(option);
+    setid(id);
+    setshowDeleteOption(true);
+  };
+
+  const _handleCloseOption = () => {
+    setshowDeleteOption(false);
+  };
+
+  const _handleDeletePollOption = () => {
+    let optionid = {
+      id: id,
+      text: Title,
+    };
+    dispatch3(DeleteOptionRequest(optionid));
+    setshowDeleteOption(false);
+    setid("");
+    setTitle("");
+  };
+
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -155,6 +180,17 @@ const Dashboard = () => {
         }}
         onDeletePoll={() => _handlePollDeletion()}
       />
+
+      <DeleteOption
+        show={showDeleteOption}
+        option={Title}
+        onCloseOption={() => {
+          _handleCloseOption();
+        }}
+        onDeletePollOption={() => {
+          _handleDeletePollOption();
+        }}
+      />
       {currentPage.map((item) => (
         <Card key={item._id} className="Card">
           <Card.Body>
@@ -164,9 +200,17 @@ const Dashboard = () => {
                 <div key={i}>
                   <input type="radio" />
                   <label>{option.option}</label>
+                  <Button
+                    onClick={() => _handleOptionDelete(option.option, item._id)}
+                    className="ml-5"
+                    variant="outline-danger"
+                  >
+                    Delete
+                  </Button>
                 </div>
               ))}
             </div>
+
             <hr />
             <Button
               variant="outline-warning"

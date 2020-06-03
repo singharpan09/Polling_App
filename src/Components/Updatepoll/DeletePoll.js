@@ -4,7 +4,7 @@ const DeletePoll = (props) => {
   return (
     <Modal show={props.show} onHide={props.onCloseDeleteModel}>
       <Modal.Header closeButton>
-        <Modal.Title>Do you want to Delete ?</Modal.Title>
+        <Modal.Title>Do you want to Delete Poll ?</Modal.Title>
       </Modal.Header>
       <Modal.Body>{props.title}</Modal.Body>
       <Modal.Footer>
