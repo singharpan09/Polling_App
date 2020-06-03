@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Modal, Button, InputGroup, FormControl } from "react-bootstrap";
 
 const UpdateTitle = (props) => {
@@ -6,7 +6,7 @@ const UpdateTitle = (props) => {
     <>
       <Modal show={props.show} onHide={props.onCloseModel}>
         <Modal.Header closeButton>
-          <Modal.Title>Title</Modal.Title>
+          <Modal.Title>Update Title</Modal.Title>
         </Modal.Header>
         <InputGroup>
           <FormControl value={props.title} onChange={props.onTitleChange} />

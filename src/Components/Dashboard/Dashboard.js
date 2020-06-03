@@ -4,7 +4,10 @@ import { Link, useHistory } from "react-router-dom";
 import "./Dashboard.css";
 import UpdateTitle from "../Updatepoll/UpdatePollTitle";
 import { ListPollRequest } from "../../Redux/createAction/createAction";
-import { UpdatePollTitleRequest } from "../../Redux/createAction/createAction";
+import {
+  UpdatePollTitleRequest,
+  DeletePollRequest,
+} from "../../Redux/createAction/createAction";
 import { useDispatch, useSelector } from "react-redux";
 import DeletePoll from "../Updatepoll/DeletePoll";
 
@@ -14,11 +17,13 @@ const Dashboard = () => {
 
   const [currentlength, setcurrentlength] = useState(5);
   const [showTitleUpdate, setshowTitleUpdate] = useState(false);
+  const [showDeletePoll, setshowDeletePoll] = useState(false);
   const [Title, setTitle] = useState("");
   const [id, setid] = useState("");
 
   const dispatch = useDispatch();
   const dispatch1 = useDispatch();
+  const dispatch2 = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
@@ -83,11 +88,26 @@ const Dashboard = () => {
     setid("");
   };
 
-  const _handleCloseDeleteModel = () => {
-    setshowTitleUpdate(!showTitleUpdate);
+  const _handleDeletePoll = (title, id) => {
+    setshowDeletePoll(!showDeletePoll);
+    setTitle(title);
+    setid(id);
   };
 
-  const _handleDeletePoll = () => {};
+  const _handleCloseDeleteModel = () => {
+    setshowDeletePoll(false);
+  };
+
+  const _handlePollDeletion = () => {
+    let Pollid = {
+      id: id,
+    };
+    dispatch2(DeletePollRequest(Pollid));
+    setid("");
+    setTitle("");
+    setshowDeletePoll(false);
+  };
+
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -128,12 +148,12 @@ const Dashboard = () => {
       />
 
       <DeletePoll
-        show={showTitleUpdate}
+        show={showDeletePoll}
         title={Title}
         onCloseDeleteModel={() => {
           _handleCloseDeleteModel();
         }}
-        onDeletePoll={() => _handleDeletePoll()}
+        onDeletePoll={() => _handlePollDeletion()}
       />
       {currentPage.map((item) => (
         <Card key={item._id} className="Card">
@@ -160,7 +180,7 @@ const Dashboard = () => {
               className="ml-2"
               variant="outline-danger"
               onClick={() => {
-                _handleshowTitle(item.title, item._id);
+                _handleDeletePoll(item.title, item._id);
               }}
             >
               Delete Poll
