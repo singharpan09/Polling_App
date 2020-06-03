@@ -48,33 +48,33 @@ const Login = () => {
     }
   });
 
-  // useEffect(() => {
-  //   if (
-  //     state.isLogin &&
-  //     localStorage.getItem("token") &&
-  //     state.response.role === "admin"
-  //   ) {
-  //     history.push("admin/dashboard");
-  //   } else if (
-  //     state.isLogin &&
-  //     localStorage.getItem("token") &&
-  //     state.response.role === "Guest"
-  //   ) {
-  //     history.push("dashboard");
+  useEffect(() => {
+    if (state.isLogin && localStorage.getItem("token")) {
+      if (state.response.role === "admin") {
+        history.push("/admin/dashboard");
+        localStorage.setItem("userType", state.response.role);
+      } else if (state.response.role === "Guest") {
+        history.push("/dashboard");
+        localStorage.setItem("userType", state.response.role);
+      } else {
+        localStorage.clear();
+        history.push("/");
+      }
+    }
+  });
+
+  // if (state.isLogin && localStorage.getItem("token")) {
+  //   if (state.response.role === "admin") {
+  //     history.push("/admin/dashboard");
+  //     localStorage.setItem("userType", state.response.role);
+  //   } else if (state.response.role === "Guest") {
+  //     history.push("/dashboard");
+  //     localStorage.setItem("userType", state.response.role);
   //   } else {
+  //     localStorage.clear();
   //     history.push("/");
   //   }
-  // });
-
-  if (state.isLogin && localStorage.getItem("token")) {
-    if (state.response.role === "admin") {
-      history.push("/admin/dashboard");
-      localStorage.setItem("userType", state.response.role);
-    } else if (state.response.role === "Guest") {
-      history.push("/dashboard");
-      localStorage.setItem("userType", state.response.role);
-    }
-  }
+  // }
 
   return (
     <React.Fragment>
