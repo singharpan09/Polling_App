@@ -28,7 +28,7 @@ const Login = () => {
   useEffect(() => {
     if (
       localStorage.getItem("token") &&
-      localStorage.getItem("userType") === "admin"
+      localStorage.getItem("userType") === "Admin"
     ) {
       history.push("/admin/dashboard");
     } else if (
@@ -50,7 +50,7 @@ const Login = () => {
 
   useEffect(() => {
     if (state.isLogin && localStorage.getItem("token")) {
-      if (state.response.role === "admin") {
+      if (state.response.role === "Admin") {
         history.push("/admin/dashboard");
         localStorage.setItem("userType", state.response.role);
       } else if (state.response.role === "Guest") {
