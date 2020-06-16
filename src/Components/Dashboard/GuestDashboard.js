@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Spinner, Navbar, Button, Pagination } from "react-bootstrap";
+import { Card, Spinner, Navbar, Button, Pagination ,Row,Col} from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import "./Dashboard.css";
 import { VoteRequest } from "../../Redux/createAction/createAction";
@@ -11,6 +11,8 @@ const GuestDashboard = () => {
   const [latestPoll, setlatestPoll] = useState([]);
 
   const [currentlength, setcurrentlength] = useState(5);
+  const [currentpagelength,setcurrentpagelength]=useState(5)
+  const [pageno,setpageno]=useState(1)
   const dispatch = useDispatch();
   const dispatch1 = useDispatch();
   const history = useHistory();
@@ -28,17 +30,19 @@ const GuestDashboard = () => {
 
   const poll = [...latestPoll].reverse();
 
-  const currentPage = poll.slice(pageSize, pageSize + 5);
+  const currentPage = poll.slice(pageSize, pageSize + currentpagelength);
 
   useEffect(() => {
     setcurrentlength(currentPage.length);
   });
 
   const handleNextPage = () => {
-    setpageSize((prev) => prev + 5);
+    setpageSize((prev) => prev + currentpagelength);
+    setpageno((prev)=>prev +1)
   };
   const handlePrevPage = () => {
-    setpageSize((prev) => prev - 5);
+    setpageSize((prev) => prev - currentpagelength);
+    setpageno((prev)=>prev -1)
   };
 
   const pollstatus = useSelector((state) => {
@@ -61,6 +65,11 @@ const GuestDashboard = () => {
     localStorage.clear();
     history.push("/");
   };
+
+  const _handlePageSize=(e)=>{
+   
+    setcurrentpagelength(parseInt(e.target.value))
+  }
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -83,6 +92,26 @@ const GuestDashboard = () => {
           <h3>Welcome to Poll</h3>
         </center>
       </div>
+      <Row className="page">
+    <Col className="d-flex justify-content-end pageno">Page No: {pageno} <div className="ml-3">
+ <label>No of Polls per page : </label>
+    <form >
+      <select value={currentpagelength} onChange={(e)=>{_handlePageSize(e)}}>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+      </form>
+      </div>
+    </Col>
+   
+  </Row>
+
+
+
       {pollstatus === false ? (
         <Spinner className="spinner" animation="border" variant="primary" />
       ) : null}
@@ -117,7 +146,7 @@ const GuestDashboard = () => {
           </Pagination.Prev>
 
           <Pagination.Next
-            disabled={pageSize >= 70 ? true : false}
+            disabled={pageSize >= poll.length - 5 ? true : false}
             onClick={handleNextPage}
           >
             Next

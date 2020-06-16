@@ -9,13 +9,12 @@ export function* loginSaga(action) {
   try {
     let username = action.payload.username;
     let password = action.payload.password;
-
+console.log(action.payload)
     let response = yield call(
       axios.get,
       `https://secure-refuge-14993.herokuapp.com/login?username=${username}&password=${password}`
     );
     let data = response.data;
-
     if (data.error === 0) {
       localStorage.setItem("token", data.token);
       let user = jwt.verify(data.token, "jwt_tok");
