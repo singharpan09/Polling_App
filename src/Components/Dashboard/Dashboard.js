@@ -6,6 +6,8 @@ import {
   Button,
   Pagination,
   Badge,
+  Row,
+  Col,
 } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import "./Dashboard.css";
@@ -21,17 +23,23 @@ import { useDispatch, useSelector } from "react-redux";
 import DeletePoll from "../Updatepoll/DeletePoll";
 import DeleteOption from "../Updatepoll/DeleteOption";
 import AddNewOption from "../Updatepoll/AddNewOption";
+
 const Dashboard = () => {
   const [pageSize, setpageSize] = useState(0);
   const [latestPoll, setlatestPoll] = useState([]);
-  const [currentlength, setcurrentlength] = useState(5);
+  // const [currentlength, setcurrentlength] = useState(5);
   const [showTitleUpdate, setshowTitleUpdate] = useState(false);
   const [showDeletePoll, setshowDeletePoll] = useState(false);
   const [showDeleteOption, setshowDeleteOption] = useState(false);
   const [showAddNewOption, setshowAddNewOption] = useState(false);
+
   const [Title, setTitle] = useState("");
   const [id, setid] = useState("");
   const [togopage, settotopage] = useState(1);
+  const [currentpagelength,setcurrentpagelength]=useState(5)
+  const [pageno,setpageno]=useState(1)
+
+
   const dispatch = useDispatch();
   const dispatch1 = useDispatch();
   const dispatch2 = useDispatch();
@@ -55,15 +63,18 @@ const Dashboard = () => {
     localStorage.clear();
     history.push("/");
   };
-  const currentPage = poll.slice(pageSize, pageSize + 5);
-  useEffect(() => {
-    setcurrentlength(currentPage.length);
-  });
+  const currentPage = poll.slice(pageSize, pageSize + currentpagelength);
+
+  // useEffect(() => {
+  //   setcurrentlength(currentPage.length);
+  // });
   const handleNextPage = () => {
-    setpageSize((prev) => prev + 5);
+    setpageSize((prev) => prev + currentpagelength);
+    setpageno((prev)=>prev +1)
   };
   const handlePrevPage = () => {
-    setpageSize((prev) => prev - 5);
+    setpageSize((prev) => prev - currentpagelength);
+    setpageno((prev)=>prev -1)
   };
   const _handleshowTitle = (title, id) => {
     setshowTitleUpdate(true);
@@ -142,12 +153,19 @@ const Dashboard = () => {
     setTitle("");
     setshowAddNewOption(false);
   };
-  const handlegotopage = (e) => {
-    settotopage(e.target.value);
-    setpageSize(5 * togopage);
-  };
-  console.log(togopage);
-  console.log(poll);
+
+
+  const _handlePageSize=(e)=>{
+   
+    setcurrentpagelength(parseInt(e.target.value))
+  }
+  const _handleEditPoll=(id)=>{
+history.push(`/admin/edit/${id}`);
+
+
+  }
+  console.log(poll)
+  // <EditPoll EditDate={item} handleOptionDelete={_handleOptionDelete()}/>
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -169,16 +187,28 @@ const Dashboard = () => {
       </Navbar>
       <div className="title">
         <center>
-          <h3>Welcome to Poll</h3>
+          <h2>Welcome to Poll</h2>
         </center>
       </div>
-      <input
-        type="number"
-        value={togopage}
-        onChange={(e) => {
-          handlegotopage(e);
-        }}
-      />
+    
+<Row className="page">
+    <Col className="d-flex justify-content-end pageno">Page No: {pageno} <div className="ml-3">
+ <label>No of Polls per page : </label>
+    <form >
+      <select value={currentpagelength} onChange={(e)=>{_handlePageSize(e)}}>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+      </select>
+      </form>
+      </div>
+    </Col>
+   
+  </Row>
+       
       {pollstatus === false ? (
         <Spinner className="spinner" animation="border" variant="primary" />
       ) : null}
@@ -222,9 +252,11 @@ const Dashboard = () => {
       />
       {currentPage.map((item) => (
         <Card key={item._id} className="Card">
-          <Card.Body>
+                  
+          <Card.Body onClick={()=>_handleEditPoll(item._id)}>
             <div className="Card1">
               <Card.Title>Title :{item.title}</Card.Title>
+             
               {item.options.map((option, i) => (
                 <div key={i}>
                   <input type="radio" name={item._id} />
@@ -233,6 +265,7 @@ const Dashboard = () => {
                     <label>
                       <Badge variant="light">{item.__v}</Badge>
                     </label>
+                    
                     <Button
                       size={"sm"}
                       onClick={() =>
@@ -244,8 +277,10 @@ const Dashboard = () => {
                       Delete
                     </Button>
                   </div>
+                 
                 </div>
               ))}
+    
             </div>
             <hr />
             <Button
@@ -274,9 +309,11 @@ const Dashboard = () => {
             >
               Add Option
             </Button>
+           
           </Card.Body>
         </Card>
       ))}
+      
       {poll.length !== 0 && (
         <Pagination>
           <Pagination.Prev
