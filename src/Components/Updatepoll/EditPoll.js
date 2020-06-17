@@ -65,10 +65,18 @@ const pollid=props.match.params.id
       id: id,
       Title: Title,
     };
-    dispatch1(UpdatePollTitleRequest(titleUpdate));
-    setshowTitleUpdate(false);
-    setTitle("");
-    setid("");
+    if(titleUpdate.Title!==""){
+      dispatch1(UpdatePollTitleRequest(titleUpdate));
+      setshowTitleUpdate(false);
+      setTitle("");
+      setid("");
+    }
+    else{
+      setshowTitleUpdate(false);
+      setTitle("");
+      setid("");
+    }
+  
   };
   const _handleDeletePoll = (title, id) => {
     setshowDeletePoll(!showDeletePoll);
@@ -120,10 +128,18 @@ const pollid=props.match.params.id
       id: id,
       option: Title,
     };
-    dispatch4(AddNewOptionRequest(Optiondata));
-    setid("");
-    setTitle("");
-    setshowAddNewOption(false);
+    if(Optiondata.option!==""){
+      dispatch4(AddNewOptionRequest(Optiondata));
+      setid("");
+      setTitle("");
+      setshowAddNewOption(false);
+    }
+    else{
+      setid("");
+      setTitle("");
+      setshowAddNewOption(false);
+    }
+   
   };
 
     return(
@@ -180,15 +196,16 @@ const pollid=props.match.params.id
               >
                 Delete Poll
               </Button>
+             
               <Button
-                onClick={() => {
-                  _handleAddNewOption(item._id);
-                }}
-                className="ml-2"
-                variant="outline-warning"
-              >
-                Add Option
-              </Button>
+              onClick={() => {
+                _handleAddNewOption(item._id);
+              }}
+              className="ml-2"
+              variant="outline-warning"
+            >
+              Add Option
+            </Button>
              
             </Card.Body>
           </Card>)
