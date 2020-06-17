@@ -51,6 +51,7 @@ const Dashboard = () => {
 const _handleEditPoll=(id)=>{
 history.push(`/admin/edit/${id}`);
   }
+  console.log(latestPoll)
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
@@ -75,7 +76,6 @@ history.push(`/admin/edit/${id}`);
           <h2>Welcome to Poll</h2>
         </center>
       </div>
-    
 <Row className="page">
     <Col className="d-flex justify-content-end pageno">Page No: {pageno} <div className="ml-3">
  <label>No of Polls per page : </label>

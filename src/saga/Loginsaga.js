@@ -9,7 +9,6 @@ export function* loginSaga(action) {
   try {
     let username = action.payload.username;
     let password = action.payload.password;
-console.log(action.payload)
     let response = yield call(
       axios.get,
       `https://secure-refuge-14993.herokuapp.com/login?username=${username}&password=${password}`

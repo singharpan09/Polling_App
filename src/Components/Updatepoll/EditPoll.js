@@ -26,28 +26,20 @@ const EditPoll=(props)=> {
     const dispatch3 = useDispatch();
     const dispatch4 = useDispatch();
 
-
     useEffect(() => {
         dispatch(ListPollRequest());
       }, []);
       const pollList = useSelector((state) => {
         return state.PollListstatus.poll;
       });
-      const pollstatus = useSelector((state) => {
-        return state.PollListstatus.isPollfetched;
-      });
       useEffect(()=>{
         setpoll(pollList)
       },[pollList])
-
 const pollid=props.match.params.id
  const polltoedit=pollList.filter(item=>item._id==pollid)
  useEffect(()=>{
     setpoll(polltoedit)
  },[pollList])
-
-
-
  const _handleshowTitle = (title, id) => {
     setshowTitleUpdate(true);
     setTitle(title);
@@ -76,7 +68,6 @@ const pollid=props.match.params.id
       setTitle("");
       setid("");
     }
-  
   };
   const _handleDeletePoll = (title, id) => {
     setshowDeletePoll(!showDeletePoll);
@@ -139,20 +130,16 @@ const pollid=props.match.params.id
       setTitle("");
       setshowAddNewOption(false);
     }
-   
   };
-
     return(
         <React.Fragment>   
             <center><h1 style={{color:"#0099ff"}}>Edit the Poll</h1></center>
             {
             poll.map((item)=>
-            <Card key={item._id} className="Card" style={{width:"80%",height:"20%"}}>
-                  
+            <Card key={item._id} className="Card" style={{width:"80%",height:"20%"}}>         
             <Card.Body >
               <div className="Card1">
                 <Card.Title>Title :{item.title}</Card.Title>
-               
                 {item.options.map((option, i) => (
                   <div key={i}>
                     <input type="radio" name={item._id} />
@@ -160,8 +147,7 @@ const pollid=props.match.params.id
                     <div className="d-flex justify-content-end">
                       <label>
                         <Badge variant="light">{item.__v}</Badge>
-                      </label>
-                      
+                      </label>   
                       <Button
                         size={"sm"}
                         onClick={() =>
@@ -173,10 +159,8 @@ const pollid=props.match.params.id
                         Delete
                       </Button>
                     </div>
-                   
                   </div>
                 ))}
-      
               </div>
               <hr />
               <Button
@@ -206,11 +190,9 @@ const pollid=props.match.params.id
             >
               Add Option
             </Button>
-             
             </Card.Body>
           </Card>)
             }
-
   <UpdateTitle
         show={showTitleUpdate}
         onCloseModel={() => _handlecloseModel()}
@@ -227,9 +209,7 @@ const pollid=props.match.params.id
           _handleCloseDeleteModel();
         }}
         onDeletePoll={() => _handlePollDeletion()}
-      />
-
-    
+      />  
       <DeleteOption
         show={showDeleteOption}
         option={Title}
@@ -252,8 +232,6 @@ const pollid=props.match.params.id
         }}
       />
       </React.Fragment>
-  
-   
     );
   }
   
