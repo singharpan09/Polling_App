@@ -15,8 +15,8 @@ const Login = () => {
   });
   const handleSubmit = () => {
     let loginData = {
-      username: username,
-      password: password,
+      username: username.trim(),
+      password: password.trim(),
     };
     dispatch(LoginRequest(loginData));
       setusername("");
