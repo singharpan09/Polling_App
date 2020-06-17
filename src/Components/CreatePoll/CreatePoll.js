@@ -3,7 +3,7 @@ import { Form, Button, Navbar } from "react-bootstrap";
 import "./CreatePoll.css";
 import { CreateNewPollRequest } from "../../Redux/createAction/createAction";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect,useHistory } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 
 const CreatePoll = () => {

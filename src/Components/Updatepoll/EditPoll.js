@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from "react";
 import {Button,Card ,Badge} from "react-bootstrap";
 import {useDispatch,useSelector} from "react-redux";
-import { useHistory, Redirect} from "react-router-dom";
+import { useHistory,Link} from "react-router-dom";
 import {
     UpdatePollTitleRequest,
     DeletePollRequest,
@@ -40,7 +40,7 @@ const EditPoll=(props)=> {
 //*******************************************************************************//
 
 
-    const history=useHistory();
+
 
 
 
@@ -60,27 +60,14 @@ const EditPoll=(props)=> {
         return state.PollListstatus.poll;
       });
 
-const deletepollstatus=useSelector((state)=>{
-  return state.DeletePollstatus
-})
-
-
 
 //**************************************************************************//
-useEffect(()=>{
-  if(deletepollstatus && deletepollstatus.response){
-    console.log(deletepollstatus,"adadad")
-    history.push("admin/dashboard")
-  }
-},[deletepollstatus])
   useEffect(()=>{
    setpoll(pollList)
    },[pollList])
 
 
 
-
-   
    //**************Get poll id ******************/
 
 
@@ -106,7 +93,7 @@ const pollid=props.match.params.id
 
  const _handleshowTitle = (title, id) => {
     setshowTitleUpdate(true);
-    setTitle(title);
+    setTitle(title.trim());
     setid(id);
   };
 
@@ -138,7 +125,7 @@ const pollid=props.match.params.id
 
   const _handletitleChange = (e) => {
     e.preventDefault();
-    setTitle(e.target.value);
+    setTitle(e.target.value.trim());
   };
 
 
@@ -147,7 +134,7 @@ const pollid=props.match.params.id
 
   const _handleDeletePoll = (title, id) => {
     setshowDeletePoll(!showDeletePoll);
-    setTitle(title);
+    setTitle(title.trim());
     setid(id);
   };
   const _handleCloseDeleteModel = () => {
@@ -163,7 +150,7 @@ const pollid=props.match.params.id
     setshowDeletePoll(false);
   };
   const _handleOptionDelete = (option, id) => {
-    setTitle(option);
+    setTitle(option.trim());
     setid(id);
     setshowDeleteOption(true);
   };
@@ -226,13 +213,18 @@ const pollid=props.match.params.id
     setshowAddNewOption(false);
   };
   const _handleOptionChange = (e) => {
-    setTitle(e.target.value);
+    setTitle(e.target.value.trim());
   };
 
   //****************************************************************************************//
     return(
         <React.Fragment>   
             <center><h1 style={{color:"#0099ff"}}>Edit the Poll</h1></center>
+
+            <Link to="/admin/dashboard">
+            <p>Go Back</p>
+            </Link>
+           
             {
             poll.map((item)=>
             <Card key={item._id} className="Card">         
