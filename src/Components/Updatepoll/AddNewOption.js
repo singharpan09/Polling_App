@@ -6,7 +6,7 @@ const AddNewOption = (props) => {
     <>
       <Modal show={props.show} onHide={props.onCloseNewOption}>
         <Modal.Header closeButton>
-          <Modal.Title>Update Title</Modal.Title>
+          <Modal.Title>Add new Option</Modal.Title>
         </Modal.Header>
         <InputGroup>
           <FormControl value={props.title} onChange={props.onOptionChange} />

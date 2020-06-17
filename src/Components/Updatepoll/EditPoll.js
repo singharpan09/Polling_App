@@ -14,6 +14,8 @@ import DeleteOption from "../Updatepoll/DeleteOption";
 import AddNewOption from "../Updatepoll/AddNewOption";
 import UpdateTitle from "../Updatepoll/UpdatePollTitle";
 const EditPoll=(props)=> {
+
+  //*************States *******************************************/
     const [poll,setpoll]=useState([])
     const [Title, setTitle] = useState("");
     const [id, setid] = useState("");
@@ -21,23 +23,50 @@ const EditPoll=(props)=> {
     const [showDeletePoll, setshowDeletePoll] = useState(false);
     const [showDeleteOption, setshowDeleteOption] = useState(false);
     const [showAddNewOption, setshowAddNewOption] = useState(false);
+
+
+//************************************************************************* *//
+
+
+
+//********************Dispatch UseEffect ***********************************//
   
     const dispatch = useDispatch();
     const dispatch1 = useDispatch();
     const dispatch2 = useDispatch();
     const dispatch3 = useDispatch();
     const dispatch4 = useDispatch();
+
+//*******************************************************************************//
+
+
     const history=useHistory();
+
+
+
+//*****************************Poll List Request **********************************//
 
     useEffect(() => {
         dispatch(ListPollRequest());
       }, []);
-      const pollList = useSelector((state) => {
+
+ //***************************************************************************//
+
+
+
+//*******************Get State from Store ***********************************//
+
+ const pollList = useSelector((state) => {
         return state.PollListstatus.poll;
       });
+
 const deletepollstatus=useSelector((state)=>{
   return state.DeletePollstatus
 })
+
+
+
+//**************************************************************************//
 useEffect(()=>{
   if(deletepollstatus && deletepollstatus.response){
     console.log(deletepollstatus,"adadad")
@@ -47,23 +76,44 @@ useEffect(()=>{
   useEffect(()=>{
    setpoll(pollList)
    },[pollList])
+
+
+
+
+   
+   //**************Get poll id ******************/
+
+
 const pollid=props.match.params.id
+
+
+//************************************************* */
+
+
+
+//********************Filter Poll based on ID ****************/
+
  const polltoedit=pollList.filter(item=>item._id==pollid)
  useEffect(()=>{
     setpoll(polltoedit)
  },[pollList])
+
+
+//**************************************************************** */
+
+
+//***************************************Update Title*******************************************//
+
  const _handleshowTitle = (title, id) => {
     setshowTitleUpdate(true);
     setTitle(title);
     setid(id);
   };
-  const _handletitleChange = (e) => {
-    e.preventDefault();
-    setTitle(e.target.value);
-  };
+
   const _handlecloseModel = () => {
     setshowTitleUpdate(false);
   };
+  
   const _handleUpdateTitle = () => {
     let titleUpdate = {
       id: id,
@@ -81,6 +131,20 @@ const pollid=props.match.params.id
       setid("");
     }
   };
+
+  //************************************* Update Title ****************************************//
+
+
+
+  const _handletitleChange = (e) => {
+    e.preventDefault();
+    setTitle(e.target.value);
+  };
+
+
+
+//*********************************************Delete Poll ***************************************//
+
   const _handleDeletePoll = (title, id) => {
     setshowDeletePoll(!showDeletePoll);
     setTitle(title);
@@ -103,8 +167,21 @@ const pollid=props.match.params.id
     setid(id);
     setshowDeleteOption(true);
   };
+
+
+//*****************************************************************************//
+
+
+
+
   const _handleCloseOption = () => {
     setshowDeleteOption(false);
+
+
+
+
+//****************Delete Poll ***************************************************//
+
   };
   const _handleDeletePollOption = () => {
     let optionid = {
@@ -116,18 +193,12 @@ const pollid=props.match.params.id
     setid("");
     setTitle("");
   };
-  const _handleAddNewOption = (id) => {
-   
-    
-    setid(id);
-    setshowAddNewOption(!showAddNewOption);
-  };
-  const _handleCloseNewOption = () => {
-    setshowAddNewOption(false);
-  };
-  const _handleOptionChange = (e) => {
-    setTitle(e.target.value);
-  };
+//********************************************************************************** //
+
+
+
+//*******************************************Update Option ************************************/
+
   const _handleUpdateOption = () => {
     let Optiondata = {
       id: id,
@@ -145,6 +216,20 @@ const pollid=props.match.params.id
       setshowAddNewOption(false);
     }
   };
+
+  const _handleAddNewOption = (id) => {
+    setTitle("");
+    setid(id);
+    setshowAddNewOption(!showAddNewOption);
+  };
+  const _handleCloseNewOption = () => {
+    setshowAddNewOption(false);
+  };
+  const _handleOptionChange = (e) => {
+    setTitle(e.target.value);
+  };
+
+  //****************************************************************************************//
     return(
         <React.Fragment>   
             <center><h1 style={{color:"#0099ff"}}>Edit the Poll</h1></center>
