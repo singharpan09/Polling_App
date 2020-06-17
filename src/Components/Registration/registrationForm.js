@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Spinner, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -14,11 +14,13 @@ const Registration = () => {
   const state = useSelector((state) => {
     return state;
   });
+
   const regisstatus = state.Registrationstatus;
+
   const handlesubmit = () => {
     let formData = {
-      username: username,
-      password: password,
+      username: username.trim(),
+      password: password.trim(),
       option: option,
     };
     dispatch(RegistationRequest(formData));
@@ -31,6 +33,7 @@ const Registration = () => {
         <Link to="/">
           <Navbar.Brand>Polling App</Navbar.Brand>
         </Link>
+
         <Link to="/">
           <Button variant="outline-primary">Login</Button>
         </Link>
@@ -38,6 +41,7 @@ const Registration = () => {
       <div className="Registration">
         <h2>Signup</h2>
       </div>
+
       <div className="Registration">
         <Form>
           <Form.Group>
@@ -58,6 +62,7 @@ const Registration = () => {
               onChange={(e) => setpassword(e.target.value)}
             />
           </Form.Group>
+
           <Form.Group controlId="formGridState">
             <Form.Label>Select user type</Form.Label>
             <Form.Control
@@ -86,7 +91,7 @@ const Registration = () => {
             {regisstatus.isLoading === true ? null : <span>Submit</span>}
           </Button>
           <div className="message">
-            {regisstatus.error && regisstatus.error.error ? (
+            {regisstatus.error && regisstatus.error.error && !regisstatus.isRegistered ? (
               <h6 style={{ color: "Red" }}>{regisstatus.error.message}</h6>
             ) : null}
             {regisstatus.isRegistered ? (

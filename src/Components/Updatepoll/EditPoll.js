@@ -1,6 +1,7 @@
 import React,{useEffect,useState} from "react";
 import {Button,Card ,Badge} from "react-bootstrap";
 import {useDispatch,useSelector} from "react-redux";
+import { useHistory, Redirect} from "react-router-dom";
 import {
     UpdatePollTitleRequest,
     DeletePollRequest,
@@ -20,11 +21,13 @@ const EditPoll=(props)=> {
     const [showDeletePoll, setshowDeletePoll] = useState(false);
     const [showDeleteOption, setshowDeleteOption] = useState(false);
     const [showAddNewOption, setshowAddNewOption] = useState(false);
+  
     const dispatch = useDispatch();
     const dispatch1 = useDispatch();
     const dispatch2 = useDispatch();
     const dispatch3 = useDispatch();
     const dispatch4 = useDispatch();
+    const history=useHistory();
 
     useEffect(() => {
         dispatch(ListPollRequest());
@@ -32,9 +35,18 @@ const EditPoll=(props)=> {
       const pollList = useSelector((state) => {
         return state.PollListstatus.poll;
       });
-      useEffect(()=>{
-        setpoll(pollList)
-      },[pollList])
+const deletepollstatus=useSelector((state)=>{
+  return state.DeletePollstatus
+})
+useEffect(()=>{
+  if(deletepollstatus && deletepollstatus.response){
+    console.log(deletepollstatus,"adadad")
+    history.push("admin/dashboard")
+  }
+},[deletepollstatus])
+  useEffect(()=>{
+   setpoll(pollList)
+   },[pollList])
 const pollid=props.match.params.id
  const polltoedit=pollList.filter(item=>item._id==pollid)
  useEffect(()=>{
