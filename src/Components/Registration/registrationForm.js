@@ -14,9 +14,7 @@ const Registration = () => {
   const state = useSelector((state) => {
     return state;
   });
-
   const regisstatus = state.Registrationstatus;
-
   const handlesubmit = () => {
     let formData = {
       username: username,
@@ -27,14 +25,12 @@ const Registration = () => {
     setusername("");
     setpassword("");
   };
-
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
         <Link to="/">
           <Navbar.Brand>Polling App</Navbar.Brand>
         </Link>
-
         <Link to="/">
           <Button variant="outline-primary">Login</Button>
         </Link>
@@ -42,7 +38,6 @@ const Registration = () => {
       <div className="Registration">
         <h2>Signup</h2>
       </div>
-
       <div className="Registration">
         <Form>
           <Form.Group>
@@ -63,7 +58,6 @@ const Registration = () => {
               onChange={(e) => setpassword(e.target.value)}
             />
           </Form.Group>
-
           <Form.Group controlId="formGridState">
             <Form.Label>Select user type</Form.Label>
             <Form.Control

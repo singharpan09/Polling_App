@@ -22,7 +22,6 @@ const CreatePoll = () => {
   const state = useSelector((state) => {
     return state.CreateNewPollstatus;
   });
-
   const handlePollSubmit = () => {
     let poll = {
       title: title,
@@ -30,13 +29,11 @@ const CreatePoll = () => {
     };
     dispatch(CreateNewPollRequest(poll));
   };
-
   const handleRemoveOption = (index) => {
     const data = [...options];
     data.splice(index, 1);
     setoptions(data);
   };
-
   if (state.isLoading === true) {
     return <Redirect to="admin/dashboard" />;
   }
@@ -56,7 +53,6 @@ const CreatePoll = () => {
           <h3>Create New Poll</h3>
         </center>
       </div>
-
       <div className="title1">
         <Form.Label>
           <h2>Title</h2>

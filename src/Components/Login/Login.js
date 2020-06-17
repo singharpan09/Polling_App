@@ -13,7 +13,6 @@ const Login = () => {
   const state = useSelector((state) => {
     return state.Loginstatus;
   });
-
   const handleSubmit = () => {
     let loginData = {
       username: username,
@@ -23,8 +22,6 @@ const Login = () => {
       setusername("");
       setpassword("");
   };
-
-  
   useEffect(() => {
     if (
       localStorage.getItem("token") &&
@@ -41,20 +38,17 @@ const Login = () => {
       history.push("/");
     }
   }, []);
-
   useEffect(() => {
     if (localStorage.getItem("token") === false) {
       history.push("/");
     }
   });
-
   useEffect(() => {
     if (state.isLogin && localStorage.getItem("token")) {
-      if (state.response.role === "Admin") {
-     
+      if (state.response.role.toLowerCase() === "admin") {
         history.push("/admin/dashboard");
         localStorage.setItem("userType", state.response.role);
-      } else if (state.response.role === "Guest") {
+      } else if (state.response.role.toLowerCase() === "guest") {
         history.push("/dashboard");
         localStorage.setItem("userType", state.response.role);
       } else {
@@ -63,14 +57,12 @@ const Login = () => {
       }
     }
   });
-
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
         <Link to="/">
           <Navbar.Brand>Polling App</Navbar.Brand>
         </Link>
-
         <Link to="/registration">
           <Button variant="outline-primary">SignUp</Button>
         </Link>
@@ -98,7 +90,6 @@ const Login = () => {
               onChange={(e) => setpassword(e.target.value)}
             />
           </Form.Group>
-
           <Button
             disabled={username && password ? false : true}
             onClick={handleSubmit}
