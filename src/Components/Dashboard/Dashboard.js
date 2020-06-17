@@ -51,7 +51,7 @@ const Dashboard = () => {
 const _handleEditPoll=(id)=>{
 history.push(`/admin/edit/${id}`);
   }
-  console.log(latestPoll)
+
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">

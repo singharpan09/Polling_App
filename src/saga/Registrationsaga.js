@@ -21,7 +21,7 @@ export default function* registrationSaga(action) {
 
     // yield put(RegistationRequest({ isLoading: true }));
     const data = response.data;
-    console.log(data);
+  
     if (data.error === 0) {
       yield put(RegistationSuccess({ registation: true, response: data }));
     } else {
