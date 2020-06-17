@@ -136,7 +136,7 @@ const pollid=props.match.params.id
             <center><h1 style={{color:"#0099ff"}}>Edit the Poll</h1></center>
             {
             poll.map((item)=>
-            <Card key={item._id} className="Card" style={{width:"80%",height:"20%"}}>         
+            <Card key={item._id} className="Card">         
             <Card.Body >
               <div className="Card1">
                 <Card.Title>Title :{item.title}</Card.Title>
