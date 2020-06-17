@@ -105,8 +105,10 @@ const pollid=props.match.params.id
     setTitle("");
   };
   const _handleAddNewOption = (id) => {
+   
+    
     setid(id);
-    setshowAddNewOption(true);
+    setshowAddNewOption(!showAddNewOption);
   };
   const _handleCloseNewOption = () => {
     setshowAddNewOption(false);
