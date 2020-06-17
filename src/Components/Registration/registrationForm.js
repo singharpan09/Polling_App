@@ -9,8 +9,6 @@ const Registration = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [option, setoptions] = useState("Admin");
-  // const[success,setsuccess]=useState("You have Successfully Registered")
-  // const[error,seterror]=useState("user already exits")
 
   const dispatch = useDispatch();
   const state = useSelector((state) => {
@@ -29,14 +27,6 @@ const Registration = () => {
     setusername("");
     setpassword("");
   };
-
-  // useEffect(()=>{
-  //   setsuccess(null)
-  // },[regisstatus])
-
-  // useEffect(()=>{
-  //   seterror(null)
-  // },[regisstatus])
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">

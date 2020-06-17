@@ -40,8 +40,8 @@ const deletepollstatus=useSelector((state)=>{
 })
 useEffect(()=>{
   if(deletepollstatus && deletepollstatus.response){
-    console.log(deletepollstatus)
-    history.goBack()
+    console.log(deletepollstatus,"adadad")
+    history.push("admin/dashboard")
   }
 },[deletepollstatus])
   useEffect(()=>{
