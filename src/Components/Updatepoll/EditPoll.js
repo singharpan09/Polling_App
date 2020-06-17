@@ -220,7 +220,6 @@ const pollid=props.match.params.id
           _handleUpdateTitle();
         }}
       />
-
              <DeletePoll
         show={showDeletePoll}
         title={Title}
