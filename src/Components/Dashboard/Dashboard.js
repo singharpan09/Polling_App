@@ -33,8 +33,6 @@ const Dashboard = () => {
   });
 
   useEffect(() => { 
-      const diff=pollList.filter(x=>x._id !==latestPoll._id)
-      console.log(diff ,"sdfsfsf")
       setlatestPoll(pollList);
   }, [pollList]);
 
