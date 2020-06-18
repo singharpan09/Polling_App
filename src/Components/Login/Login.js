@@ -28,16 +28,13 @@ const Login = () => {
       localStorage.getItem("userType") === "Admin"
     ) {
       history.push("/admin/dashboard");
-    } else if (
-      localStorage.getItem("token") &&
-    localStorage.getItem("userType") === "Guest"
-    ) {
-      history.push("/dashboard");
-    } else {
+    }  else {
       localStorage.clear();
       history.push("/");
     }
   }, []);
+
+
   useEffect(() => {
     if (localStorage.getItem("token") === false) {
       history.push("/");
@@ -48,10 +45,7 @@ const Login = () => {
       if (state.response.role.toLowerCase() === "admin") {
         history.push("/admin/dashboard");
         localStorage.setItem("userType", state.response.role);
-      } else if (state.response.role.toLowerCase() === "guest") {
-        history.push("/dashboard");
-        localStorage.setItem("userType", state.response.role);
-      } else {
+      }  else {
         localStorage.clear();
         history.push("/");
       }
