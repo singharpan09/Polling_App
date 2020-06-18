@@ -17,7 +17,7 @@ const rootReducer = combineReducers({
   DeletePollstatus: DeletePollreducer,
   DeleteOptionstatus: DeleteOptionreducer,
   AddNewOptionstatus: AddNewOptionreducer,
- votestatus:Votingreducer,
+  Votestatus:Votingreducer,
 });
 
 export default rootReducer;
