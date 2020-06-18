@@ -5,9 +5,7 @@ import { CreatePollRequest } from "./CreatePollsaga";
 import { UpdateTitleRequest } from "./PollUpdateSaga/TitleUpdateSaga";
 import { DeletePollRequest } from "./PollUpdateSaga/DeletePollSaga";
 import { DeleteOptionRequest } from "./PollUpdateSaga/DeleteOptionSaga";
-import { VoteRequest } from "./VoteSaga/VoteSaga";
 import { AddNewOptionRequest } from "./PollUpdateSaga/AddNewOptionSaga";
-
 import { fork, all } from "redux-saga/effects";
 function* watchAllSaga() {
   {
@@ -20,7 +18,7 @@ function* watchAllSaga() {
       fork(DeletePollRequest),
       fork(DeleteOptionRequest),
       fork(AddNewOptionRequest),
-      fork(VoteRequest),
+    
     ]);
   }
 }

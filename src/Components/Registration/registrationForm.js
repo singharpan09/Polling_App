@@ -71,7 +71,7 @@ const Registration = () => {
               onChange={(e) => setoptions(e.target.value)}
             >
               <option value="Admin">Admin</option>
-              <option value="Guest">Guest User</option>
+            
             </Form.Control>
           </Form.Group>
           <Button
