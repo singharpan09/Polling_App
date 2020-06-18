@@ -6,7 +6,9 @@ import {Spinner,Card,Navbar,Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 
 const GuestVoting=()=>{
+  const [error,seterror]=useState(false)
   const [poll,setpoll]= useState([])
+  const [item,setitem]=useState()
     const dispatch = useDispatch();
     const dispatch1 = useDispatch();
     const history = useHistory();
@@ -27,15 +29,14 @@ const GuestVoting=()=>{
     });
   
     const _handleVote = (id, option) => {
-      let usertoken = localStorage.getItem("token");
+      let usertoken =  localStorage.getItem("token");
       let Vote = {
         id: id,
         option: option,
         token: usertoken,
       };
-  console.log(Vote)
       localStorage.setItem(id, option);
-      dispatch1(VoteRequest(Vote));
+    dispatch1(VoteRequest(Vote));
     };
   
     const handleLogout = () => {
@@ -44,23 +45,28 @@ const GuestVoting=()=>{
     };
   useEffect(()=>{
     var item = poll[Math.floor(Math.random() * poll.length)];
-    console.log(item)
-  },[poll])
+    if(item){
+    
+      setitem(item)
+    }
+   
+  },[poll.length])
+
   const _handledoubleVoteClick=(id)=>{
-    if(localStorage.key(id)===id){
-      console.log(localStorage.key(id))
-      console.log("hello")
+    console.log(id)
+    console.log("false")
+  
+    if(localStorage.getItem(id) ){
+      console.log("true")
+      seterror(true)
     }
   } 
-
-
     return(
         <React.Fragment>
         <Navbar bg="dark" variant="dark">
           <Link to="/">
             <Navbar.Brand>Polling App</Navbar.Brand>
           </Link>
-  
           <Link to="/">
             <Button
               className="logout"
@@ -81,29 +87,30 @@ const GuestVoting=()=>{
           <Spinner className="spinner" animation="border" variant="primary" />
         ) : null}
   
-        {poll.map((item) => (
-          <Card key={item._id} className="Card" >
-            <div className="Card1">
-              <Card.Title>Title :{item.title}</Card.Title>
-              {item.options.map((option, i) => (
-                <div key={i} onClick={()=>_handledoubleVoteClick(item._id)}>
-                  <input
-                    type="radio"
-                    name={item._id}
-                    disabled={localStorage.getItem(item._id) ? true : false}
-                    onClick={()=>_handledoubleVoteClick(item._id,option.option)}
-                    onChange={() => {
-                      _handleVote(item._id, option.option);
-                    }}
-                  />
-                  <label>{option.option}</label> 
-                </div>
-              ))}
-            </div>
-          </Card>
-        ))}
-       
- 
+          { item &&
+     (<Card key={item._id} className="Card" >
+     <div className="Card1" onClick={()=>_handledoubleVoteClick(item._id)}>
+       <Card.Title>Title :{item.title}</Card.Title>
+       {item.options.map((option, i) => (
+         <div key={i} >
+           <input
+             type="radio"
+             name={item._id}
+             disabled={localStorage.getItem(item._id) ? true : false}
+            //  onClick={()=>_handledoubleVoteClick(item._id,option.option)}
+             onChange={() => {
+               _handleVote(item._id, option.option);
+             }}
+           />
+           <label>{option.option}</label> 
+
+         </div>
+       ))}
+      
+          {error===true ?<div><hr/><center><p style={{color:"red"}}>**You have alredy voted this Poll**</p></center></div>:null }
+     </div>
+   </Card>)
+          }
       </React.Fragment>
     )
   }
