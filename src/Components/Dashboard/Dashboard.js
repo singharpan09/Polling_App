@@ -20,6 +20,7 @@ const Dashboard = () => {
   const [pageno,setpageno]=useState(1)
   const dispatch = useDispatch();
   const history = useHistory();
+  
   useEffect(() => {
     dispatch(ListPollRequest());
   
@@ -31,18 +32,14 @@ const Dashboard = () => {
     return state.PollListstatus.isPollfetched;
   });
 
-
-
-
   
   useEffect(() => { 
 
-      const diff=pollList.filter(x=>latestPoll.indexOf(x)===-1)
+      const diff=pollList.filter(x=>x._id !==latestPoll._id)
       console.log(diff ,"sdfsfsf")
    
       setlatestPoll(pollList);
   }, [pollList]);
-
 
 
 
@@ -69,8 +66,7 @@ const Dashboard = () => {
 const _handleEditPoll=(id)=>{
 history.push(`/admin/edit/${id}`);
   }
-console.log(pollList)
-  console.log(poll)
+
 
   return (
     <React.Fragment>
