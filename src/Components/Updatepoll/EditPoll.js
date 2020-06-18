@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from "react";
 import {Button,Card ,Badge} from "react-bootstrap";
 import {useDispatch,useSelector} from "react-redux";
-import { useHistory,Link} from "react-router-dom";
+import { Link} from "react-router-dom";
 import {
     UpdatePollTitleRequest,
     DeletePollRequest,
@@ -93,7 +93,7 @@ const pollid=props.match.params.id
 
  const _handleshowTitle = (title, id) => {
     setshowTitleUpdate(true);
-    setTitle(title.trim());
+    setTitle(title);
     setid(id);
   };
 
@@ -125,7 +125,7 @@ const pollid=props.match.params.id
 
   const _handletitleChange = (e) => {
     e.preventDefault();
-    setTitle(e.target.value.trim());
+    setTitle(e.target.value);
   };
 
 
@@ -213,7 +213,7 @@ const pollid=props.match.params.id
     setshowAddNewOption(false);
   };
   const _handleOptionChange = (e) => {
-    setTitle(e.target.value.trim());
+    setTitle(e.target.value);
   };
 
   //****************************************************************************************//
@@ -284,6 +284,9 @@ const pollid=props.match.params.id
             </Card.Body>
           </Card>)
             }
+
+{/* //*****************************Modals Imports*********************************************/}
+
   <UpdateTitle
         show={showTitleUpdate}
         onCloseModel={() => _handlecloseModel()}
@@ -322,6 +325,11 @@ const pollid=props.match.params.id
           _handleUpdateOption();
         }}
       />
+
+
+{/* //***************************************************************************** */ }
+
+
       </React.Fragment>
     );
   }

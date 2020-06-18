@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import _ from 'lodash';
 import {
   Card,
   Spinner,
@@ -21,6 +22,7 @@ const Dashboard = () => {
   const history = useHistory();
   useEffect(() => {
     dispatch(ListPollRequest());
+  
   }, []);
   const pollList = useSelector((state) => {
     return state.PollListstatus.poll;
@@ -28,9 +30,25 @@ const Dashboard = () => {
   const pollstatus = useSelector((state) => {
     return state.PollListstatus.isPollfetched;
   });
-  useEffect(() => {
-    setlatestPoll(pollList);
+
+
+
+
+  
+  useEffect(() => { 
+
+      const diff=pollList.filter(x=>latestPoll.indexOf(x)===-1)
+      console.log(diff ,"sdfsfsf")
+   
+      setlatestPoll(pollList);
   }, [pollList]);
+
+
+
+
+
+
+
   const poll = [...latestPoll].reverse();
   const handleLogout = () => {
     localStorage.clear();
@@ -51,6 +69,8 @@ const Dashboard = () => {
 const _handleEditPoll=(id)=>{
 history.push(`/admin/edit/${id}`);
   }
+console.log(pollList)
+  console.log(poll)
 
   return (
     <React.Fragment>
