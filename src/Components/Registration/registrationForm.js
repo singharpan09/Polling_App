@@ -41,7 +41,10 @@ const Registration = () => {
       <div className="Registration">
         <h2>Signup</h2>
       </div>
+<div>
+  <p style={{color:"red"}}>** Select user Type</p>
 
+  </div>
       <div className="Registration">
         <Form>
           <Form.Group>
@@ -64,12 +67,13 @@ const Registration = () => {
           </Form.Group>
 
           <Form.Group controlId="formGridState">
-            <Form.Label>Select user type</Form.Label>
+            <Form.Label >User type <span style={{color:"red"}}>**</span></Form.Label>
             <Form.Control
               name={option}
               as="select"
               onChange={(e) => setoptions(e.target.value)}
             >
+            <option value="Guest">Guest</option>
               <option value="Admin">Admin</option>
             
             </Form.Control>
