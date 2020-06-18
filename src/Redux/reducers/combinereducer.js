@@ -7,7 +7,7 @@ import CreateNewPollreducer from "./createNewPollreducer";
 import UpdateTitlereducer from "./UpdatePoll/UpdatePollTitle";
 import DeletePollreducer from "./UpdatePoll/DeletePoll";
 import DeleteOptionreducer from "./UpdatePoll/DeleteOption";
-import Votereducer from "./Votereducer/Votereducer";
+
 import AddNewOptionreducer from "./UpdatePoll/AddNewOption";
 const rootReducer = combineReducers({
   Registrationstatus: Registrationreducer,
@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   DeletePollstatus: DeletePollreducer,
   DeleteOptionstatus: DeleteOptionreducer,
   AddNewOptionstatus: AddNewOptionreducer,
-  Votestatus: Votereducer,
+ 
 });
 
 export default rootReducer;
