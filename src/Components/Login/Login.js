@@ -28,7 +28,12 @@ const Login = () => {
       localStorage.getItem("userType") === "Admin"
     ) {
       history.push("/admin/dashboard");
-    }  else {
+    } else if (
+      localStorage.getItem("token") &&
+    localStorage.getItem("userType") === "Guest"
+    ) {
+      history.push("/guest/dashboard");
+    } else {
       localStorage.clear();
       history.push("/");
     }
@@ -45,7 +50,10 @@ const Login = () => {
       if (state.response.role.toLowerCase() === "admin") {
         history.push("/admin/dashboard");
         localStorage.setItem("userType", state.response.role);
-      }  else {
+      } else if (state.response.role.toLowerCase() === "guest") {
+        history.push("guest/dashboard");
+        localStorage.setItem("userType", state.response.role);
+      } else {
         localStorage.clear();
         history.push("/");
       }

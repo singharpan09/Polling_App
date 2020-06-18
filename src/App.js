@@ -4,6 +4,7 @@ import Dashboard from "../src/Components/Dashboard/Dashboard";
 import CreatePoll from "./Components/CreatePoll/CreatePoll";
 import Login from "./Components/Login/Login";
 import EditPoll from "./Components/Updatepoll/EditPoll"
+import GuestVoting from "./Components/GuestVoting/GuestVoting"
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
 import PrivateRouting from "./PrivateRouting";
@@ -16,6 +17,7 @@ function App() {
         <Route exact path="/" component={Login} />
         <Route path="/registration" component={Registration} />
         <PrivateRouting path="/admin/dashboard" component={Dashboard} />
+        <PrivateRouting path="/guest/dashboard" component={GuestVoting}/>
         <PrivateRouting path="/createpoll" component={CreatePoll} />
         <PrivateRouting path="/admin/edit/:id"component={EditPoll}/>
       </Switch>
