@@ -1,5 +1,4 @@
 import { combineReducers } from "redux";
-
 import Registrationreducer from "./Registrationreducer";
 import Loginreducer from "./Loginreducer";
 import PollListreducer from "./PollListreducer";
@@ -7,8 +6,8 @@ import CreateNewPollreducer from "./createNewPollreducer";
 import UpdateTitlereducer from "./UpdatePoll/UpdatePollTitle";
 import DeletePollreducer from "./UpdatePoll/DeletePoll";
 import DeleteOptionreducer from "./UpdatePoll/DeleteOption";
-
 import AddNewOptionreducer from "./UpdatePoll/AddNewOption";
+import Votingreducer from "./votingreducer/votingreducer";
 const rootReducer = combineReducers({
   Registrationstatus: Registrationreducer,
   Loginstatus: Loginreducer,
@@ -18,7 +17,7 @@ const rootReducer = combineReducers({
   DeletePollstatus: DeletePollreducer,
   DeleteOptionstatus: DeleteOptionreducer,
   AddNewOptionstatus: AddNewOptionreducer,
- 
+ votestatus:Votingreducer,
 });
 
 export default rootReducer;
