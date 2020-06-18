@@ -36,7 +36,3 @@ export const DeleteOptionError = createAction(actions.Delete_OptionError);
 export const AddNewOptionRequest = createAction(actions.AddNew_OptionRequest);
 export const AddNewOptionSuccess = createAction(actions.AddNew_OptionSuccess);
 export const AddNewOptionError = createAction(actions.AddNew_OptionError);
-
-export const VoteRequest = createAction(actions.Vote_Request);
-export const VoteSuccess = createAction(actions.Vote_Success);
-export const VoteError = createAction(actions.Vote_Error);

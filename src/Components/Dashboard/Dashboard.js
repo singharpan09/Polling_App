@@ -32,19 +32,11 @@ const Dashboard = () => {
     return state.PollListstatus.isPollfetched;
   });
 
-  
   useEffect(() => { 
-
       const diff=pollList.filter(x=>x._id !==latestPoll._id)
       console.log(diff ,"sdfsfsf")
-   
       setlatestPoll(pollList);
   }, [pollList]);
-
-
-
-
-
 
   const poll = [...latestPoll].reverse();
   const handleLogout = () => {
@@ -66,8 +58,6 @@ const Dashboard = () => {
 const _handleEditPoll=(id)=>{
 history.push(`/admin/edit/${id}`);
   }
-
-
   return (
     <React.Fragment>
       <Navbar bg="dark" variant="dark">
