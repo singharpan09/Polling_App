@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 const GuestVoting=()=>{
   const [error,seterror]=useState(false)
   const [poll,setpoll]= useState([])
+  const [polltaken,setpolltaken]=useState([])
   const [item,setitem]=useState()
     const dispatch = useDispatch();
     const dispatch1 = useDispatch();
@@ -45,19 +46,17 @@ const GuestVoting=()=>{
     };
   useEffect(()=>{
     var item = poll[Math.floor(Math.random() * poll.length)];
-    if(item){
     
+    if(item){
+      console.log(item._id)
       setitem(item)
     }
    
   },[poll.length])
 
   const _handledoubleVoteClick=(id)=>{
-    console.log(id)
-    console.log("false")
-  
     if(localStorage.getItem(id) ){
-      console.log("true")
+      console.log(localStorage.getItem(id))
       seterror(true)
     }
   } 
@@ -82,7 +81,7 @@ const GuestVoting=()=>{
             <h3>Welcome to Poll</h3>
           </center>
         </div>
-
+<p style ={{color:"red"}}>*Refresh the page for the next poll</p>
         {pollstatus === false ? (
           <Spinner className="spinner" animation="border" variant="primary" />
         ) : null}
@@ -107,7 +106,7 @@ const GuestVoting=()=>{
          </div>
        ))}
       
-          {error===true ?<div><hr/><center><p style={{color:"red"}}>**You have already voted this Poll**</p></center></div>:null }
+          {error===true ?<div><hr/><center><p style={{color:"red"}}>**You have Already voted on this Poll**</p></center></div>:null }
      </div>
    </Card>)
           }
