@@ -8,7 +8,7 @@ import { RegistationRequest } from "../../Redux/createAction/createAction";
 const Registration = () => {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
-  const [option, setoptions] = useState("Admin");
+  const [option, setoptions] = useState("Guest");
 
   const dispatch = useDispatch();
   const state = useSelector((state) => {
