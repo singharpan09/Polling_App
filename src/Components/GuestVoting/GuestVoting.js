@@ -107,7 +107,7 @@ const GuestVoting=()=>{
          </div>
        ))}
       
-          {error===true ?<div><hr/><center><p style={{color:"red"}}>**You have alredy voted this Poll**</p></center></div>:null }
+          {error===true ?<div><hr/><center><p style={{color:"red"}}>**You have already voted this Poll**</p></center></div>:null }
      </div>
    </Card>)
           }
